@@ -313,7 +313,7 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
         bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, key="bmi")
-        dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 1000, 180, key="dur")
+        dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 1000, 180, key="dur")
 
     # ---- CARD 2: ประวัติสุขภาพ ----
     with col2:
