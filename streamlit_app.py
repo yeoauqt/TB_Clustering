@@ -90,20 +90,40 @@ html, body, [class*="css"] {
     min-height: 100vh;
 }
 
-/* ===== INPUT CARDS ===== */
-.card-wrapper {
-    background-color: #FEFCE8;
-    border-radius: 20px;
-    padding: 28px 26px;
-    border: 1px solid #F5E08A;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    min-height: 460px;
+/* พื้นหลังทั้ง form */
+div[data-testid="stForm"] {
+    background-color: #f5f0e8 !important;
+    border: none !important;
+    padding: 40px 64px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
+
+/* gap ระหว่าง columns */
+div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] {
+    gap: 24px !important;
+    align-items: stretch !important;
+}
+
+/* ===== INPUT CARDS — ใช้ CSS ย้อม column แทน HTML div ===== */
+
+/* ย้อม column block ให้เป็นการ์ด */
+div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid="stVerticalBlock"] {
+    background-color: #FEFCE8 !important;
+    border-radius: 20px !important;
+    border: 1px solid #F0DC82 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+    padding: 28px 22px 32px 22px !important;
+    min-height: 480px !important;
+}
+
 .card-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F0DC82;
 }
 .card-icon {
     font-size: 1.5rem;
@@ -155,7 +175,11 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     box-shadow: 0 6px 18px rgba(245, 200, 66, 0.5) !important;
 }
 
-/* ===== RESULT SECTION ===== */
+/* ===== RESULT AREA ===== */
+div[data-testid="stVerticalBlock"]:has(div.result-header) {
+    background-color: #f5f0e8 !important;
+    padding: 0 64px 60px 64px !important;
+}
 .result-header {
     display: flex;
     align-items: center;
@@ -273,20 +297,16 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- 6. CONTENT AREA ---
-st.markdown('<div class="content-area">', unsafe_allow_html=True)
-
+# --- 6. FORM ---
 with st.form("main_form"):
     col1, col2, col3 = st.columns(3, gap="large")
 
     # ---- CARD 1: ข้อมูลพื้นฐาน ----
     with col1:
         st.markdown("""
-        <div class="card-wrapper">
-            <div class="card-header">
-                <span class="card-icon">👤</span>
-                <span class="card-title-text">ข้อมูลพื้นฐาน</span>
-            </div>
+        <div class="card-header">
+            <span class="card-icon">👤</span>
+            <span class="card-title-text">ข้อมูลพื้นฐาน</span>
         </div>
         """, unsafe_allow_html=True)
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
@@ -297,11 +317,9 @@ with st.form("main_form"):
     # ---- CARD 2: ประวัติสุขภาพ ----
     with col2:
         st.markdown("""
-        <div class="card-wrapper">
-            <div class="card-header">
-                <span class="card-icon">❤️</span>
-                <span class="card-title-text">ประวัติสุขภาพ</span>
-            </div>
+        <div class="card-header">
+            <span class="card-icon">❤️</span>
+            <span class="card-title-text">ประวัติสุขภาพ</span>
         </div>
         """, unsafe_allow_html=True)
         hiv  = st.selectbox("สถานะ HIV",                        ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ"])
@@ -313,11 +331,9 @@ with st.form("main_form"):
     # ---- CARD 3: ผลการตรวจ ----
     with col3:
         st.markdown("""
-        <div class="card-wrapper">
-            <div class="card-header">
-                <span class="card-icon">🧪</span>
-                <span class="card-title-text">ผลการตรวจ</span>
-            </div>
+        <div class="card-header">
+            <span class="card-icon">🧪</span>
+            <span class="card-title-text">ผลการตรวจ</span>
         </div>
         """, unsafe_allow_html=True)
         afb = st.selectbox("AFB เดือนที่ 1",        ["Negative", "1+", "2+", "3+", "Scanty"])
@@ -467,5 +483,3 @@ if sub:
 
     else:
         st.error("⚠️ ไม่พบไฟล์โมเดล กรุณาตรวจสอบว่ามีไฟล์ `xgb_tb_model.pkl` และ `model_features.pkl` ในโฟลเดอร์เดียวกัน")
-
-st.markdown('</div>', unsafe_allow_html=True)  # close content-area
