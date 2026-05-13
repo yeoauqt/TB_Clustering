@@ -163,10 +163,11 @@ div[data-testid="stFormSubmitButton"] > button {
     font-size: 1.05rem !important;
     border-radius: 14px !important;
     border: none !important;
-    padding: 14px 40px !important;
+    padding: 14px 32px !important;
     box-shadow: 0 4px 14px rgba(245, 200, 66, 0.4) !important;
     transition: all 0.2s ease !important;
     width: 100% !important;
+    white-space: nowrap !important;
 }
 div[data-testid="stFormSubmitButton"] > button:hover {
     background-color: #E6B800 !important;
@@ -341,11 +342,13 @@ with st.form("main_form"):
         f_u = st.number_input("จำนวนครั้งติดตาม",   0, 50, 1)
         arv = st.selectbox("สถานะ ARV",              ["ไม่ได้รับ", "ได้รับ"])
 
-    # ---- SUBMIT BUTTON (กึ่งกลาง) ----
+    # ---- SUBMIT BUTTON (กึ่งกลาง, single-line) ----
     st.markdown("<br>", unsafe_allow_html=True)
-    _, btn_mid, _ = st.columns([2, 1, 2])
+    st.markdown('<div style="display:flex; justify-content:center;">', unsafe_allow_html=True)
+    _, btn_mid, _ = st.columns([3, 2, 3])
     with btn_mid:
         sub = st.form_submit_button("🔍 วิเคราะห์ผลการรักษา", use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- 7. RESULT ---
 if sub:
@@ -425,12 +428,11 @@ if sub:
             fig.update_layout(
                 height=280,
                 margin=dict(l=30, r=30, t=30, b=10),
-                paper_bgcolor='white',
-                plot_bgcolor='white',
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)',
                 font={'family': 'Sarabun'}
             )
 
-            st.markdown('<div class="gauge-card">', unsafe_allow_html=True)
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
             st.markdown(f"""
                 <div style="text-align:center; margin-top:-10px;">
@@ -443,7 +445,6 @@ if sub:
                     <span><span class="legend-dot" style="background:#E57373;"></span>สูง (60–100%)</span>
                 </div>
             """, unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
 
         with r2:
             # Warning box
