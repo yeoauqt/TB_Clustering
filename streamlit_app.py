@@ -59,7 +59,7 @@ if model:
             age = st.number_input("อายุ (Age)", min_value=0, max_value=120, value=45)
             gender = st.selectbox("เพศ (Gender)", ["ชาย", "หญิง"])
             bmi = st.number_input("ดัชนีมวลกาย (BMI)", min_value=10.0, max_value=50.0, value=20.0, step=0.1)
-            duration = st.number_input("ระยะเวลาการรักษา (Duration - วัน)", min_value=0, value=180)
+            duration = st.number_input("ระยะเวลาการรักษา (Duration - เดือน)", min_value=0, value=180)
 
         with col2:
             st.subheader("🩺 ประวัติสุขภาพ")
@@ -72,7 +72,7 @@ if model:
         with col3:
             st.subheader("🧪 ผลการตรวจ")
             afb = st.selectbox("ผล AFB เดือนแรก", ["Negative", "1+", "2+", "3+", "Scanty"])
-            pos_tb = st.selectbox("ตำแหน่งของโรค (Position)", ["ในปอด", "นอกปอด"])
+            pos_tb = st.selectbox("ตำแหน่งของโรค (Position)", ["ในปอด", "นอกปอด", "ในและนอกปอด"])
             follow_up = st.number_input("จำนวนครั้งที่ Follow up", min_value=0, value=1)
             arv = st.selectbox("ได้รับยา ARV หรือไม่", ["ไม่ได้รับ", "ได้รับ"])
 
