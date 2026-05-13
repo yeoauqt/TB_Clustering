@@ -283,6 +283,86 @@ div[data-testid="stVerticalBlock"]:has(div.result-header) {
 /* ===== HIDE STREAMLIT DEFAULTS ===== */
 #MainMenu, footer, header { visibility: hidden; }
 .stDeployButton { display: none; }
+
+/* ===== RESPONSIVE — TABLET (max 1024px) ===== */
+@media (max-width: 1024px) {
+    .hero-section { padding: 40px 32px 48px !important; }
+    .hero-title   { font-size: 1.8rem !important; }
+    div[data-testid="stForm"] { padding: 28px 32px !important; }
+
+    div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid="stVerticalBlock"] {
+        padding: 22px 16px 26px !important;
+        min-height: unset !important;
+    }
+    .navbar { padding: 12px 24px !important; }
+    .navbar-links { gap: 18px !important; font-size: 0.85rem !important; }
+}
+
+/* ===== RESPONSIVE — MOBILE (max 768px) ===== */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar { padding: 12px 16px !important; flex-wrap: wrap; gap: 6px; }
+    .navbar-links { display: none !important; }
+    .navbar-brand { font-size: 1rem !important; }
+
+    /* Hero */
+    .hero-section  { padding: 28px 16px 36px !important; }
+    .hero-title    { font-size: 1.35rem !important; line-height: 1.5 !important; }
+    .hero-subtitle { font-size: 0.9rem !important; }
+
+    /* Form padding */
+    div[data-testid="stForm"] { padding: 16px 12px !important; }
+
+    /* Stack 3 columns → 1 column */
+    div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid="stVerticalBlock"] {
+        width: 100% !important;
+        min-width: 100% !important;
+        min-height: unset !important;
+        padding: 20px 16px 24px !important;
+    }
+
+    /* Result columns stack */
+    div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlock"]) {
+        flex-direction: column !important;
+    }
+
+    /* Button full width */
+    div[data-testid="stFormSubmitButton"] > button {
+        font-size: 0.95rem !important;
+        padding: 12px 20px !important;
+    }
+
+    /* Warning/note cards */
+    .warning-card, .warning-card-medium, .warning-card-low, .note-card {
+        padding: 14px 14px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Result area */
+    div[data-testid="stVerticalBlock"]:has(div.result-header) {
+        padding: 0 12px 40px !important;
+        margin-top: -10px !important;
+    }
+    .result-title { font-size: 1.1rem !important; }
+}
+
+/* ===== RESPONSIVE — SMALL MOBILE (max 480px) ===== */
+@media (max-width: 480px) {
+    .hero-title    { font-size: 1.15rem !important; }
+    .hero-subtitle { font-size: 0.82rem !important; }
+    .card-title-text { font-size: 0.95rem !important; }
+
+    div[data-testid="stForm"] { padding: 12px 8px !important; }
+    div[data-testid="stForm"] div[data-testid="stVerticalBlock"] {
+        padding: 16px 12px 20px !important;
+    }
+
+    .legend-row { flex-direction: column; align-items: center; gap: 6px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
