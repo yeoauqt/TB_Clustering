@@ -62,30 +62,31 @@ if model:
     with st.form("prediction_form"):
         col1, col2, col3 = st.columns(3)
 
-        with col1:
-            st.subheader("📌 ข้อมูลพื้นฐาน")
-            age = st.number_input("อายุ (Age)", min_value=0, max_value=120, value=45)
-            gender = st.selectbox("เพศ (Gender)", ["ชาย", "หญิง"])
-            bmi = st.number_input("ดัชนีมวลกาย (BMI)", min_value=10.0, max_value=50.0, value=20.0, step=0.1)
-            duration = st.number_input("ระยะเวลาการรักษา (Duration - วัน)", min_value=0, value=180)
+    with col1:
+        st.subheader("📌 ข้อมูลพื้นฐาน")
+        age = st.number_input("อายุ (Age)", min_value=0, max_value=120, value=45)
+        gender = st.selectbox("เพศ (Gender)", ["ชาย", "หญิง"])
+        bmi = st.number_input("ดัชนีมวลกาย (BMI)", min_value=10.0, max_value=50.0, value=20.0, step=0.1)
+        duration = st.number_input("ระยะเวลาการรักษา (Duration - เดือน)", min_value=0, value=180)
 
-        with col2:
-            st.subheader("🩺 ประวัติสุขภาพ")
-            hiv = st.selectbox("สถานะ HIV", ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ/ไม่ตรวจ"])
-            dm = st.selectbox("เบาหวาน (Diabetes Mellitus)", [0, 1], help="0=No, 1=Yes")
-            ckd = st.selectbox("โรคไตเรื้อรัง (CKD)", [0, 1])
-            copd = st.selectbox("โรคปอดอุดกั้นเรื้อรัง (COPD)", [0, 1])
-            liver = st.selectbox("โรคตับ (Liver Disease)", [0, 1])
+    with col2:
+        st.subheader("🩺 ประวัติสุขภาพ")
+        hiv = st.selectbox("สถานะ HIV", ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ/ไม่ตรวจ"])
+    
+        dm = st.selectbox("เบาหวาน (Diabetes Mellitus)", ["ไม่เป็น", "เป็น"])
+        ckd = st.selectbox("โรคไตเรื้อรัง (CKD)", ["ไม่เป็น", "เป็น"])
+        copd = st.selectbox("โรคปอดอุดกั้นเรื้อรัง (COPD)", ["ไม่เป็น", "เป็น"])
+        liver = st.selectbox("โรคตับ (Liver Disease)", ["ไม่เป็น", "เป็น"])
 
-        with col3:
-            st.subheader("🧪 ผลการตรวจ")
-            afb = st.selectbox("ผล AFB เดือนแรก", ["Negative", "1+", "2+", "3+", "Scanty"])
-            pos_tb = st.selectbox("ตำแหน่งของโรค (Position)", ["ในปอด", "นอกปอด"])
-            follow_up = st.number_input("จำนวนครั้งที่ Follow up", min_value=0, value=1)
-            arv = st.selectbox("ได้รับยา ARV หรือไม่", ["No", "Yes"])
+    with col3:
+        st.subheader("🧪 ผลการตรวจ")
+        afb = st.selectbox("ผล AFB เดือนแรก", ["Negative", "1+", "2+", "3+", "Scanty"])
+        pos_tb = st.selectbox("ตำแหน่งของโรค (Position)", ["ในปอด", "นอกปอด", "ในและนอกปอด"])
+        follow_up = st.number_input("จำนวนครั้งที่ Follow up", min_value=0, value=1)
+        arv = st.selectbox("ได้รับยา ARV หรือไม่", ["ไม่ได้รับ", "ได้รับ"])
 
-        # ปุ่มกดทำนาย
-        submit_btn = st.form_submit_button("วิเคราะห์ผลการรักษา")
+    submit_btn = st.form_submit_button("วิเคราะห์ผลการรักษา")
+
 
     # --- 5. PREDICTION LOGIC ---
     if submit_btn:
