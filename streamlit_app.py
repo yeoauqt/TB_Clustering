@@ -166,8 +166,7 @@ div[data-testid="stFormSubmitButton"] > button {
     padding: 14px 40px !important;
     box-shadow: 0 4px 14px rgba(245, 200, 66, 0.4) !important;
     transition: all 0.2s ease !important;
-    width: auto !important;
-    min-width: 220px !important;
+    width: 100% !important;
 }
 div[data-testid="stFormSubmitButton"] > button:hover {
     background-color: #E6B800 !important;
@@ -178,7 +177,8 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 /* ===== RESULT AREA ===== */
 div[data-testid="stVerticalBlock"]:has(div.result-header) {
     background-color: #f5f0e8 !important;
-    padding: 0 64px 60px 64px !important;
+    padding: 0 64px 40px 64px !important;
+    margin-top: -20px !important;
 }
 .result-header {
     display: flex;
@@ -341,10 +341,10 @@ with st.form("main_form"):
         f_u = st.number_input("จำนวนครั้งติดตาม",   0, 50, 1)
         arv = st.selectbox("สถานะ ARV",              ["ไม่ได้รับ", "ได้รับ"])
 
-    # ---- SUBMIT BUTTON ----
+    # ---- SUBMIT BUTTON (กึ่งกลาง) ----
     st.markdown("<br>", unsafe_allow_html=True)
-    btn_col = st.columns([1, 2, 1])
-    with btn_col[1]:
+    _, btn_mid, _ = st.columns([2, 1, 2])
+    with btn_mid:
         sub = st.form_submit_button("🔍 วิเคราะห์ผลการรักษา", use_container_width=True)
 
 # --- 7. RESULT ---
@@ -384,8 +384,6 @@ if sub:
         risk_pct  = prob * 100
         risk_text = "สูง" if prob > 0.6 else "ปานกลาง" if prob > 0.3 else "ต่ำ"
         badge_cls = "risk-high" if prob > 0.6 else "risk-medium" if prob > 0.3 else "risk-low"
-
-        st.markdown("<br>", unsafe_allow_html=True)
 
         # Result header
         st.markdown("""
