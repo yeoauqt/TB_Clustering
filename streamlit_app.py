@@ -417,7 +417,7 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
         bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, key="bmi")
-        dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 1000, 180, key="dur")
+        dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 1000, 180, key="dur")
 
     # ---- CARD 2: ประวัติสุขภาพ ----
     with col2:
@@ -430,8 +430,8 @@ with st.form("main_form"):
         hiv  = st.selectbox("สถานะ HIV",                        ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ"])
         ckd  = st.selectbox("โรคไตเรื้อรัง (CKD)",              ["ไม่เป็น", "เป็น"])
         copd = st.selectbox("โรคปอดอุดกั้นเรื้อรัง (COPD)",    ["ไม่เป็น", "เป็น"])
-        liv  = st.selectbox("โรคตับ",                           ["ไม่เป็น", "เป็น"])
-        dm   = st.selectbox("โรคเบาหวาน",                       ["ไม่เป็น", "เป็น"])
+        liv  = st.selectbox("โรคตับ (Liver Disease)",                           ["ไม่เป็น", "เป็น"])
+        dm   = st.selectbox("โรคเบาหวาน (Diabetes Mellitus)",                       ["ไม่เป็น", "เป็น"])
 
     # ---- CARD 3: ผลการตรวจ ----
     with col3:
