@@ -240,9 +240,33 @@ div[data-testid="stVerticalBlock"]:has(div.result-header) {
     gap: 12px;
     align-items: flex-start;
 }
+.warning-card-medium {
+    background: #FFFBEA;
+    border-left: 5px solid #F5C842;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.warning-card-low {
+    background: #EAFAF1;
+    border-left: 5px solid #43A047;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
 .warning-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
 .warning-text { font-size: 0.9rem; color: #5c1010; line-height: 1.6; }
 .warning-text b { display: block; margin-bottom: 4px; font-size: 0.95rem; }
+.warning-text-medium { font-size: 0.9rem; color: #7B5800; line-height: 1.6; }
+.warning-text-medium b { display: block; margin-bottom: 4px; font-size: 0.95rem; }
+.warning-text-low { font-size: 0.9rem; color: #1B5E20; line-height: 1.6; }
+.warning-text-low b { display: block; margin-bottom: 4px; font-size: 0.95rem; }
 
 .note-card {
     background: #F1EEEA;
@@ -313,7 +337,7 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
         bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, key="bmi")
-        dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 1000, 180, key="dur")
+        dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 1000, 180, key="dur")
 
     # ---- CARD 2: ประวัติสุขภาพ ----
     with col2:
@@ -447,35 +471,79 @@ if sub:
             """, unsafe_allow_html=True)
 
         with r2:
-            # Warning box
-            warning_text = ""
-            if bmi < 18.5:
-                warning_text += "BMI ต่ำกว่าเกณฑ์ปกติ (< 18.5) "
-            if age > 60:
-                warning_text += "อายุมากกว่า 60 ปี "
-            if hiv == "ติดเชื้อ (Positive)":
-                warning_text += "ติดเชื้อ HIV "
-            if not warning_text:
-                warning_text = "พบปัจจัยเสี่ยงบางประการ"
+            # คำเตือนแยกตามระดับความเสี่ยง
+            if prob > 0.6:
+                # สูง — แดง
+                warning_card_class = "warning-card"
+                warning_text_class = "warning-text"
+                warning_icon = "🚨"
+                warning_title = "ความเสี่ยงสูง — ต้องการการดูแลเร่งด่วน"
+                warning_body = (
+                    "ผู้ป่วยรายนี้มีความเสี่ยงสูงมากที่ผลการรักษาวัณโรคจะไม่สำเร็จ "
+                    "ปัจจัยที่พบอาจได้แก่ ภาวะทุพโภชนาการ (BMI ต่ำกว่าเกณฑ์) การติดเชื้อร่วม เช่น HIV "
+                    "หรือการมีโรคประจำตัวหลายโรคซึ่งส่งผลต่อภูมิคุ้มกันและการตอบสนองต่อยา<br><br>"
+                    "ขอแนะนำให้ทีมแพทย์พิจารณาปรับแผนการรักษาโดยด่วน ตรวจสอบความเป็นไปได้ของเชื้อดื้อยา "
+                    "และจัดให้มีการติดตามผู้ป่วยอย่างใกล้ชิดอย่างน้อยทุก 2 สัปดาห์ "
+                    "รวมถึงประเมินการสนับสนุนด้านโภชนาการและสังคมเพื่อเพิ่มโอกาสความสำเร็จในการรักษา"
+                )
+                note_icon = "💡"
+                note_body = (
+                    "ผลลัพธ์นี้เป็นเพียงการพยากรณ์เบื้องต้นจากระบบปัญญาประดิษฐ์ ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกได้ "
+                    "การตัดสินใจในการรักษาควรอยู่บนพื้นฐานของการประเมินทางคลินิกโดยแพทย์ผู้เชี่ยวชาญ "
+                    "กรุณาส่งต่อผู้ป่วยพบแพทย์เฉพาะทางโรควัณโรคโดยเร็วที่สุด"
+                )
+            elif prob > 0.3:
+                # ปานกลาง — เหลือง
+                warning_card_class = "warning-card-medium"
+                warning_text_class = "warning-text-medium"
+                warning_icon = "⚠️"
+                warning_title = "ความเสี่ยงปานกลาง — ควรติดตามอย่างสม่ำเสมอ"
+                warning_body = (
+                    "ผู้ป่วยรายนี้มีปัจจัยเสี่ยงบางประการที่อาจส่งผลต่อความสำเร็จในการรักษา "
+                    "แม้จะยังไม่อยู่ในระดับวิกฤต แต่ควรให้ความสำคัญกับการติดตามอาการและการรับยาอย่างต่อเนื่อง "
+                    "ปัจจัยที่ควรเฝ้าระวัง ได้แก่ ความสม่ำเสมอในการรับประทานยา ภาวะโภชนาการ และโรคประจำตัวที่อาจกำเริบ<br><br>"
+                    "แนะนำให้นัดติดตามผู้ป่วยตามกำหนดอย่างเคร่งครัด พร้อมประเมินผลข้างเคียงของยา "
+                    "และให้ความรู้แก่ผู้ป่วยเกี่ยวกับความสำคัญของการรักษาอย่างครบถ้วนเพื่อป้องกันการดื้อยาในอนาคต"
+                )
+                note_icon = "💡"
+                note_body = (
+                    "ผลลัพธ์นี้เป็นเพียงการพยากรณ์เบื้องต้นจากระบบปัญญาประดิษฐ์ ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกได้ "
+                    "กรุณาใช้ข้อมูลนี้ประกอบการพิจารณาของแพทย์ผู้ดูแลร่วมกับข้อมูลทางคลินิกอื่น ๆ "
+                    "และปรึกษาแพทย์ผู้เชี่ยวชาญหากพบความผิดปกติใด ๆ ระหว่างการรักษา"
+                )
+            else:
+                # ต่ำ — เขียว
+                warning_card_class = "warning-card-low"
+                warning_text_class = "warning-text-low"
+                warning_icon = "✅"
+                warning_title = "ความเสี่ยงต่ำ — แนวโน้มการรักษาดี"
+                warning_body = (
+                    "ผู้ป่วยรายนี้มีแนวโน้มผลการรักษาวัณโรคที่ดี ปัจจัยเสี่ยงโดยรวมอยู่ในระดับต่ำ "
+                    "ซึ่งบ่งชี้ว่าร่างกายมีศักยภาพในการตอบสนองต่อการรักษาได้อย่างมีประสิทธิภาพ "
+                    "หากผู้ป่วยรับประทานยาครบตามกำหนดและดูแลสุขภาพโดยรวมอย่างเหมาะสม<br><br>"
+                    "แนะนำให้รับประทานยาต่อเนื่องอย่างสม่ำเสมอโดยไม่หยุดยาเอง ดูแลโภชนาการให้เพียงพอ "
+                    "พักผ่อนให้เต็มที่ และมาตรวจตามนัดทุกครั้งเพื่อติดตามผลการรักษาและป้องกันการกลับมาของโรค"
+                )
+                note_icon = "💡"
+                note_body = (
+                    "แม้ความเสี่ยงจะอยู่ในระดับต่ำ ผลลัพธ์นี้ยังคงเป็นเพียงการพยากรณ์เบื้องต้นจากระบบ AI "
+                    "ไม่ควรใช้เป็นเหตุผลในการหยุดหรือปรับเปลี่ยนการรักษาด้วยตนเอง "
+                    "ควรปรึกษาแพทย์และติดตามอาการอย่างสม่ำเสมอตลอดระยะเวลาการรักษา"
+                )
 
             st.markdown(f"""
-            <div class="warning-card">
-                <span class="warning-icon">⚠️</span>
-                <div class="warning-text">
-                    <b>คำเตือน:</b>
-                    ผู้ป่วยอยู่ในกลุ่มเสี่ยงต่อผลการรักษาที่ไม่สำเร็จ
-                    ผู้ป่วยที่มีดัชนีมวลกายต่ำ (BMI &lt; 18.5) อายุมาก
-                    และมีโรคประจำตัวหลายโรค มีโอกาสสูงที่จะเกิดผลการรักษาที่ไม่สำเร็จ
-                    ควรได้รับการติดตามอย่างใกล้ชิด และพิจารณาแผนการรักษาเสริมเพิ่มเติม
+            <div class="{warning_card_class}">
+                <span class="warning-icon">{warning_icon}</span>
+                <div class="{warning_text_class}">
+                    <b>{warning_title}</b>
+                    {warning_body}
                 </div>
             </div>
             <div class="note-card">
-                <span class="warning-icon">💡</span>
+                <span class="warning-icon">{note_icon}</span>
                 <div class="note-text">
                     <b>หมายเหตุ:</b>
-                    ผลลัพธ์นี้เป็นเพียงการพยากรณ์เบื้องต้นจากระบบปัญญาประดิษฐ์
-                    ไม่สามารถใช้แทนการวินิจฉัยและการตัดสินใจทางคลินิกของแพทย์ผู้เชี่ยวชาญได้
-                    กรุณาปรึกษาแพทย์เพื่อคำแนะนำที่เหมาะสมกับสภาวะของผู้ป่วย
+                    {note_body}
                 </div>
             </div>
             """, unsafe_allow_html=True)
