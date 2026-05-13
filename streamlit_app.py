@@ -33,7 +33,8 @@ st.markdown("""
         padding: 20px;
         border: 1px solid #FFE58F;
         margin-bottom: 10px;
-        min-height: 550px;
+    /* เปลี่ยนจาก height เป็น min-height หรือลบออกเพื่อให้กรอบยืดตาม */
+        min-height: 580px; 
     }
     
     .card-header {
@@ -97,6 +98,7 @@ def encode_inputs(input_dict):
             encoded[col] = mapping.get(encoded[col], 0)
     return encoded
 
+
 # --- 4. USER INTERFACE (UI) ---
 st.title("🏥 ระบบพยากรณ์ความเสี่ยงผลการรักษาวัณโรค (TB)")
 st.caption("AI-Powered Tuberculosis Treatment Outcome Prediction System")
@@ -106,13 +108,14 @@ if model:
         col1, col2, col3 = st.columns(3)
 
         with col1:
+            # ใช้ st.container ครอบข้างใน div อีกทีเพื่อความชัวร์
             st.markdown('<div class="input-card">', unsafe_allow_html=True)
             st.markdown('<div class="card-header">👤 ข้อมูลพื้นฐาน</div>', unsafe_allow_html=True)
             age = st.number_input("อายุ (Age)", 0, 120, 45)
             gender = st.selectbox("เพศ (Gender)", ["ชาย", "หญิง"])
             bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, step=0.1)
-            duration = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 1000, 180)
-            st.markdown('</div>', unsafe_allow_html=True)
+            duration = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 1000, 180)
+            st.markdown('</div>', unsafe_allow_html=True) # ปิดกรอบที่ 1
 
         with col2:
             st.markdown('<div class="input-card">', unsafe_allow_html=True)
@@ -122,7 +125,7 @@ if model:
             ckd = st.selectbox("โรคไตเรื้อรัง (CKD)", ["ไม่เป็น", "เป็น"])
             copd = st.selectbox("โรคปอดอุดกั้นเรื้อรัง (COPD)", ["ไม่เป็น", "เป็น"])
             liver = st.selectbox("โรคตับ (Liver Disease)", ["ไม่เป็น", "เป็น"])
-            st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True) # ปิดกรอบที่ 2
 
         with col3:
             st.markdown('<div class="input-card">', unsafe_allow_html=True)
@@ -131,10 +134,11 @@ if model:
             pos_tb = st.selectbox("ตำแหน่งของโรค", ["ในปอด", "นอกปอด", "ในและนอกปอด"])
             follow_up = st.number_input("จำนวนครั้งที่ Follow up", 0, 100, 1)
             arv = st.selectbox("ได้รับยา ARV หรือไม่", ["ไม่ได้รับ", "ได้รับ"])
-            st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True) # ปิดกรอบที่ 3
 
         st.markdown("<br>", unsafe_allow_html=True)
         submit_btn = st.form_submit_button("วิเคราะห์ความเสี่ยงและพยากรณ์ผล")
+
 
     # --- 5. PREDICTION LOGIC ---
     if submit_btn:
