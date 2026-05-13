@@ -12,7 +12,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# ปรับแต่งหน้าตาด้วย CSS
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap');
@@ -26,15 +25,97 @@ st.markdown("""
         padding: 0 !important;
     }
 
-    /* สไตล์ของการ์ดสีเหลือง */
+    /* สไตล์ของการ์ดสีเหลืองที่ปรับปรุงให้รองรับเนื้อหา */
     .input-card {
         background-color: #FFF9E1;
         border-radius: 15px;
-        padding: 20px;
+        padding: 25px;
         border: 1px solid #FFE58F;
-        margin-bottom: 10px;
-    /* เปลี่ยนจาก height เป็น min-height หรือลบออกเพื่อให้กรอบยืดตาม */
-        min-height: 580px; 
+        margin-bottom: 20px;
+        /* ใช้ min-height เพื่อให้กรอบขยายตาม widget ข้างใน */
+        min-height: 520px;
+        display: block;
+    }
+    
+    .card-header {
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #856404;
+        border-bottom: 2px solid #FFE58F;
+        padding-bottom: 10px;
+    }
+
+    .stButton>button {
+        background-color: #FFD600 !important;
+        color: black !important;
+        font-weight: bold !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+        height: 3.5rem;
+        font-size: 1.2rem !important;
+        border: none !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# --- 2. LOAD ASSETS ---
+@st.cache_resource
+def load_assets():
+    try:
+        model = joblib.load('xgb_tb_model.pkl')
+        features = joblib.load('model_features.pkl')
+        return model, features
+    except FileNotFoundError:
+        st.error("❌ ไม่พบไฟล์โมเดล!")
+        return None, None
+
+model, model_features = load_assets()
+
+# --- 3. ENCODING FUNCTION ---
+def encode_inputs(input_dict):
+    mappings = {
+        'Gender': {'ชาย': 0, 'หญิง': 1},
+        'HIV': {'ไม่ติดเชื้อ (Negative)': 0, 'ติดเชื้อ (Positive)': 1, 'ไม่ทราบ/ไม่ตรวจ': 2},
+        'Diabetes Mellitus': {'ไม่เป็น': 0, 'เป็น': 1},
+        'Chronic Kidney Disease': {'ไม่เป็น': 0, 'เป็น': 1},
+        ' Chronic Obstructive Pulmonary Disease': {'ไม่เป็น': 0, 'เป็น': 1},
+        'Liver Disease': {'ไม่เป็น': 0, 'เป็น': 1},
+        ' AFB resulf of first month': {'Negative': 0, '1+': 1, '2+': 2, '3+': 3, 'Scanty': 4},
+        'position of TB': {'ในปอด': 0, 'นอกปอด': 1, 'ในและนอกปอด': 2},
+        'Treatment of ARV': {'ไม่ได้รับ': 0, 'ได้รับ': 1}
+    }
+    encoded = input_dict.copy()
+    for col, mapping in mappings.items():
+        if col in encoded:
+            encoded[col] = mapping.get(encoded[col], 0)
+    return encoded
+
+# --- 4. USER INTERFACE (UI) ---
+st.title("🏥 ระบบพยากรณ์ความเสี่ยงผลการรักษาวัณโรค (TB)")
+st.caption("AI-Powered Tuberculosis Treatment Outcome Prediction System")
+
+if model:
+    with st.form("prediction_form"):
+        col1, col2, col3 = st.columns(3)
+
+        # การใช้โครงสร้าง HTML ล้อมรอบช่อง Input ของ Streamlit
+        with col1:
+            st.markdown('<div class="input-card">', unsafe_allow_html=True)
+            st.markdown('<div class="card-header">👤 ข้อมูลพื้นฐาน</div>', unsafe_allow_html=True)
+            # วาง Widget ทับลงไปตรงๆ ระหว่างเปิดและปิด div
+            age = st.number_input("อายุ (Age)", 0, 120, 45)
+            gender = st.selectbox("เพศ (Gender)", ["ชาย", "หญิง"])
+            bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, step=0.1)
+            duration = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 1000, 180)
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        with col2:
+            st.markdown('<div class="input-card">', unsafe_allow_html=True)
+            st.markdown('<div class="card-header">🩺 ประวัติสุขภาพ</div>', unsafe_allow_html=True)
+            hiv = st.selectbox("สถานะ HIV", ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ/ไม่ตรวจ"])
+            dm = st.selectbox("เบาหวาน", ["ไม่เป็น", "เป็น"])
+            ckd = st.selectbox("โรคไต        min-height: 580px; 
     }
     
     .card-header {
