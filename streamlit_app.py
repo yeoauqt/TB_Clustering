@@ -59,7 +59,6 @@ section.main > div {
     background: linear-gradient(135deg, var(--blue-main), var(--blue-mid));
     border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem;
     box-shadow: 0 4px 16px var(--blue-glow);
     flex-shrink: 0;
 }
@@ -107,9 +106,9 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
     border-bottom: 1.5px solid var(--blue-light);
 }
 .card-icon-circle {
-    width: 36px; height: 36px; border-radius: 50%;
+    width: 38px; height: 38px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
+    flex-shrink: 0;
     background: linear-gradient(135deg, var(--blue-main), var(--blue-mid));
     box-shadow: 0 2px 10px var(--blue-glow);
 }
@@ -163,7 +162,7 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     width: 42px; height: 42px; border-radius: 13px;
     background: linear-gradient(135deg, var(--blue-main), var(--blue-mid));
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; box-shadow: 0 4px 14px var(--blue-glow);
+    box-shadow: 0 4px 14px var(--blue-glow);
 }
 .result-title { font-size: 1.4rem; font-weight: 700; color: var(--blue-main); }
 
@@ -249,7 +248,7 @@ model, model_features = load_assets()
 
 st.markdown("""
 <div class="page-header">
-    <div class="header-logo">🏥</div>
+    <div class="header-logo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
     <div>
         <div class="header-text-title">ระบบพยากรณ์ความเสี่ยงผลการรักษาวัณโรค (TB)</div>
         <div class="header-text-sub">ระบบวิเคราะห์ความเสี่ยงในการรักษาผู้ป่วยวัณโรคด้วยเทคโนโลยี AI</div>
@@ -262,14 +261,14 @@ with st.form("main_form"):
     col1, col2, col3 = st.columns(3, gap="large")
 
     with col1:
-        st.markdown('<div class="card-header"><div class="card-icon-circle">📍</div><span class="card-title-text">ข้อมูลพื้นฐาน</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-header"><div class="card-icon-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="card-title-text">ข้อมูลพื้นฐาน</span></div>', unsafe_allow_html=True)
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
         bmi = st.number_input("ดัชนีมวลกาย (BMI)", 10.0, 50.0, 20.0, key="bmi")
         dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 1000, 180, key="dur")
 
     with col2:
-        st.markdown('<div class="card-header"><div class="card-icon-circle">💙</div><span class="card-title-text">ประวัติสุขภาพ</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-header"><div class="card-icon-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="card-title-text">ประวัติสุขภาพ</span></div>', unsafe_allow_html=True)
         hiv  = st.selectbox("สถานะ HIV",                      ["ไม่ติดเชื้อ (Negative)", "ติดเชื้อ (Positive)", "ไม่ทราบ"])
         ckd  = st.selectbox("โรคไตเรื้อรัง (CKD)",            ["ไม่เป็น", "เป็น"])
         copd = st.selectbox("โรคปอดอุดกั้นเรื้อรัง (COPD)",  ["ไม่เป็น", "เป็น"])
@@ -277,7 +276,7 @@ with st.form("main_form"):
         dm   = st.selectbox("โรคเบาหวาน (Diabetes Mellitus)", ["ไม่เป็น", "เป็น"])
 
     with col3:
-        st.markdown('<div class="card-header"><div class="card-icon-circle">🧪</div><span class="card-title-text">ผลการตรวจ</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-header"><div class="card-icon-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6m-6 0v6l-4 9a1 1 0 0 0 .9 1.45h12.2A1 1 0 0 0 19 18L15 9V3m-6 0h6"/></svg></div><span class="card-title-text">ผลการตรวจ</span></div>', unsafe_allow_html=True)
         afb = st.selectbox("AFB เดือนที่ 1",      ["Negative", "1+", "2+", "3+", "Scanty"])
         pos = st.selectbox("ตำแหน่งการติดเชื้อ",  ["ในปอด", "นอกปอด", "ในและนอกปอด"])
         f_u = st.number_input("จำนวนครั้งติดตาม", 0, 50, 1)
@@ -326,7 +325,7 @@ if sub:
         st.markdown('<div class="result-section-bg">', unsafe_allow_html=True)
         st.markdown("""
         <div class="result-header">
-            <div class="result-icon-circle">📊</div>
+            <div class="result-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
             <span class="result-title">ผลการวิเคราะห์</span>
         </div>""", unsafe_allow_html=True)
 
