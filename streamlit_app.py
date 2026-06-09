@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 st.set_page_config(
     page_title="ระบบพยากรณ์ความเสี่ยงวัณโรค TB",
-    page_icon="🫁",
+    page_icon="TB",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -285,7 +285,7 @@ with st.form("main_form"):
     st.markdown("<br>", unsafe_allow_html=True)
     _, btn_mid, _ = st.columns([3, 2, 3])
     with btn_mid:
-        sub = st.form_submit_button("🔍 วิเคราะห์ผลการรักษา", use_container_width=True)
+        sub = st.form_submit_button("วิเคราะห์ผลการรักษา", use_container_width=True)
 
 if sub:
     if model is not None:
@@ -330,7 +330,7 @@ if sub:
         </div>""", unsafe_allow_html=True)
 
         if prob > 0.6:
-            wc, wt, wi = "warning-card", "warning-text", "⚠️"
+            wc, wt, wi = "warning-card", "warning-text", '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
             wtitle = "คำเตือน: ผู้ป่วยอยู่ในกลุ่มเสี่ยงต่อผลการรักษาที่ไม่สำเร็จ"
             wbody  = ("ผู้ป่วยที่มีดัชนีมวลกายต่ำ (BMI &lt; 18.5) อายุมาก และมีโรคประจำตัวหลายโรค "
                       "มีโอกาสสูงที่จะเกิดผลการรักษาที่ไม่สำเร็จ ควรได้รับการติดตามอย่างใกล้ชิด "
@@ -338,14 +338,14 @@ if sub:
             nb = ("ผลลัพธ์นี้เป็นเพียงการพยากรณ์เบื้องต้นจากระบบปัญญาประดิษฐ์ ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกได้ "
                   "กรุณาปรึกษาแพทย์เพื่อรับคำแนะนำที่เหมาะสมกับสภาวะของผู้ป่วย")
         elif prob > 0.3:
-            wc, wt, wi = "warning-card-medium", "warning-text-medium", "⚠️"
+            wc, wt, wi = "warning-card-medium", "warning-text-medium", '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
             wtitle = "ควรติดตามอาการ: ผู้ป่วยมีปัจจัยเสี่ยงบางประการ"
             wbody  = ("พบปัจจัยเสี่ยงบางส่วนที่อาจส่งผลต่อผลการรักษา ควรนัดติดตามผู้ป่วยอย่างสม่ำเสมอ "
                       "และให้ความรู้เกี่ยวกับการรับประทานยาอย่างต่อเนื่องเพื่อป้องกันการดื้อยา")
             nb = ("ผลลัพธ์นี้เป็นเพียงการพยากรณ์เบื้องต้นจากระบบปัญญาประดิษฐ์ ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกได้ "
                   "กรุณาใช้ข้อมูลนี้ประกอบการพิจารณาของแพทย์ผู้ดูแล")
         else:
-            wc, wt, wi = "warning-card-low", "warning-text-low", "✅"
+            wc, wt, wi = "warning-card-low", "warning-text-low", '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
             wtitle = "แนวโน้มดี: ความเสี่ยงต่ำ"
             wbody  = ("ผู้ป่วยรายนี้มีแนวโน้มการรักษาที่ดี หากรับประทานยาครบตามกำหนดและดูแลสุขภาพอย่างเหมาะสม "
                       "โอกาสหายขาดจากวัณโรคอยู่ในระดับสูง ควรมาตรวจตามนัดทุกครั้ง")
@@ -398,10 +398,10 @@ if sub:
 
         st.markdown(f"""
         <div class="note-card" style="margin-top:4px;">
-            <span class="warning-icon">ℹ️</span>
+            <span class="warning-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
             <div class="note-text"><b>หมายเหตุ:</b>{nb}</div>
         </div>
         </div>""", unsafe_allow_html=True)
 
     else:
-        st.error("⚠️ ไม่พบไฟล์โมเดล กรุณาตรวจสอบว่ามีไฟล์ `xgb_tb_model.pkl` และ `model_features.pkl` ในโฟลเดอร์เดียวกัน")
+        st.error("ไม่พบไฟล์โมเดล กรุณาตรวจสอบว่ามีไฟล์ `xgb_tb_model.pkl` และ `model_features.pkl` ในโฟลเดอร์เดียวกัน")
