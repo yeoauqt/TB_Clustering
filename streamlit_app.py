@@ -70,42 +70,11 @@ section.main > div {
 }
 .top-spacer { height: 28px; background: var(--bg-base); }
 
-/* ===== MODE SWITCHER ===== */
-.mode-bar {
-    background: #FFFFFF;
-    border-bottom: 1.5px solid var(--border);
-    padding: 12px 64px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.mode-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-mid);
-    margin-right: 4px;
-}
-
-/* ===== INFO BANNER ===== */
-.info-banner {
-    margin: 0 64px 0px;
-    background: var(--blue-light);
-    border: 1.5px solid #BFDBFE;
-    border-radius: 14px;
-    padding: 14px 20px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 0.87rem;
-    color: #1E3A5F;
-    line-height: 1.7;
-}
-
 /* ===== FORM ===== */
 div[data-testid="stForm"] {
     background-color: var(--bg-base) !important;
     border: none !important;
-    padding: 0 64px 28px !important;
+    padding: 24px 64px 28px !important;
     box-shadow: none !important;
     border-radius: 0 !important;
 }
@@ -145,16 +114,6 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
     font-size: 1.02rem; font-weight: 700; color: var(--blue-main);
 }
 
-/* ===== FIELD HINT ===== */
-.field-hint {
-    font-size: 0.78rem;
-    color: var(--text-soft);
-    margin-top: -8px;
-    margin-bottom: 8px;
-    line-height: 1.5;
-    padding-left: 2px;
-}
-
 /* ===== BMI DISPLAY ===== */
 .bmi-display {
     background: var(--blue-light);
@@ -189,30 +148,62 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
 .bmi-over    { background: #FEF9C3; color: #854D0E; }
 .bmi-obese   { background: #FEE2E2; color: #991B1B; }
 
-/* ===== STAFF-ONLY BADGE ===== */
-.staff-badge {
-    display: inline-block;
-    background: #F1F5F9;
-    color: #64748B;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 1px 7px;
-    margin-left: 6px;
-    vertical-align: middle;
-    letter-spacing: 0.3px;
-}
+/* ===== RADIO PILLS ===== */
+div[data-testid="stElementContainer"] { width: 100% !important; }
 
-/* ===== LABELS ===== */
+div[data-testid="stRadio"] > label {
+    font-size: 0.83rem !important;
+    color: var(--text-mid) !important;
+    font-weight: 500 !important;
+    margin-bottom: 4px !important;
+}
+div[data-testid="stRadio"] [data-testid="stWidgetLabel"] p {
+    font-size: 0.83rem !important;
+    color: var(--text-mid) !important;
+    font-weight: 500 !important;
+}
+div[data-testid="stRadio"] { width: 100% !important; }
+div[data-testid="stRadio"] [role="radiogroup"] {
+    background: #F8FAFF !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: 10px !important;
+    padding: 3px !important;
+    display: flex !important;
+    width: 100% !important;
+    gap: 2px !important;
+    margin-top: 2px !important;
+}
+div[data-testid="stRadio"] [role="radiogroup"] label {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 12px !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 0.88rem !important;
+    color: var(--text-mid) !important;
+    min-height: 44px !important;
+    white-space: nowrap !important;
+}
+div[data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {
+    background: white !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10) !important;
+    color: var(--blue-main) !important;
+    font-weight: 700 !important;
+}
+div[data-testid="stRadio"] [role="radiogroup"] label input[type="radio"] { display: none !important; }
+div[data-testid="stRadio"] [role="radiogroup"] label > div:first-child { display: none !important; }
+
+/* ===== LABELS & INPUTS ===== */
 .stSelectbox > label, .stNumberInput > label {
     font-size: 0.83rem !important;
     color: var(--text-mid) !important;
     font-weight: 500 !important;
     margin-bottom: 3px !important;
 }
-
-/* ===== INPUTS ===== */
 div[data-baseweb="select"] > div,
 div[data-baseweb="input"] > div {
     background-color: #F8FAFF !important;
@@ -260,11 +251,6 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     border-radius: 14px; padding: 18px 20px; margin-bottom: 14px;
     display: flex; gap: 12px; align-items: flex-start;
 }
-.warning-card-medium {
-    background: #FFFBEA; border-left: 4px solid #F59E0B;
-    border-radius: 14px; padding: 18px 20px; margin-bottom: 14px;
-    display: flex; gap: 12px; align-items: flex-start;
-}
 .warning-card-low {
     background: #F0FDF4; border-left: 4px solid #22C55E;
     border-radius: 14px; padding: 18px 20px; margin-bottom: 14px;
@@ -273,8 +259,6 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 .warning-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 .warning-text { font-size: 0.9rem; color: #7F1D1D; line-height: 1.7; }
 .warning-text b { display: block; margin-bottom: 4px; font-size: 0.95rem; color: #991B1B; }
-.warning-text-medium { font-size: 0.9rem; color: #78350F; line-height: 1.7; }
-.warning-text-medium b { display: block; margin-bottom: 4px; font-size: 0.95rem; color: #92400E; }
 .warning-text-low { font-size: 0.9rem; color: #14532D; line-height: 1.7; }
 .warning-text-low b { display: block; margin-bottom: 4px; font-size: 0.95rem; color: #166534; }
 .note-card {
@@ -292,15 +276,8 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     border: 1.5px solid var(--border);
     text-align: center; margin-bottom: 14px;
 }
-.gauge-subtitle {
-    font-size: 0.82rem;
-    color: var(--text-soft);
-    margin-top: 4px;
-    margin-bottom: 12px;
-}
 .risk-badge { display: inline-block; padding: 5px 20px; border-radius: 20px; font-weight: 700; font-size: 0.93rem; margin-top: 6px; }
 .risk-low    { background: #DCFCE7; color: #166534; }
-.risk-medium { background: #FEF9C3; color: #854D0E; }
 .risk-high   { background: #FEE2E2; color: #991B1B; }
 .legend-row {
     display: flex; justify-content: center; gap: 20px;
@@ -308,11 +285,30 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 }
 .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
 
-/* ===== DIVIDER ===== */
-.section-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 8px 0 16px;
+/* ===== ACTION BOX ===== */
+.action-box {
+    background: white; border-radius: 14px; padding: 20px 22px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    margin-bottom: 14px;
+}
+.action-box-title {
+    font-size: 0.92rem; font-weight: 700; color: var(--text-dark);
+    margin-bottom: 12px;
+}
+.action-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.88rem; color: var(--text-mid);
+    line-height: 1.6; margin-bottom: 8px;
+}
+.action-item:last-child { margin-bottom: 0; }
+.action-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue-mid); flex-shrink: 0; margin-top: 7px;
+}
+.action-dot-red {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #EF4444; flex-shrink: 0; margin-top: 7px;
 }
 
 #MainMenu, footer, header { visibility: hidden; }
@@ -320,17 +316,13 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 
 @media (max-width: 1024px) {
     .page-header { padding: 20px 32px !important; }
-    .mode-bar { padding: 12px 32px !important; }
-    .info-banner { margin: 0 32px 0px !important; }
-    div[data-testid="stForm"] { padding: 0 32px 24px !important; }
+    div[data-testid="stForm"] { padding: 16px 32px 24px !important; }
     .result-section-bg { padding: 8px 32px 40px !important; }
 }
 @media (max-width: 768px) {
     .page-header { padding: 16px 16px !important; gap: 12px !important; }
     .header-text-title { font-size: 1.05rem !important; }
-    .mode-bar { padding: 10px 16px !important; }
-    .info-banner { margin: 0 12px 0px !important; }
-    div[data-testid="stForm"] { padding: 0 12px 20px !important; }
+    div[data-testid="stForm"] { padding: 12px 12px 20px !important; }
     div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] { flex-direction: column !important; gap: 14px !important; }
     div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid="stVerticalBlock"] {
         width: 100% !important; min-height: unset !important; padding: 18px 14px 22px !important;
@@ -351,11 +343,9 @@ def load_assets():
 
 model, model_features = load_assets()
 
-# ─── Helper ────────────────────────────────────────────────
 def calc_bmi(weight_kg, height_cm):
     if height_cm <= 0: return 0.0
-    h_m = height_cm / 100
-    return round(weight_kg / (h_m ** 2), 1)
+    return round(weight_kg / (height_cm / 100) ** 2, 1)
 
 def bmi_category(bmi):
     if bmi < 18.5: return ("น้ำหนักน้อยกว่าเกณฑ์", "bmi-under")
@@ -374,39 +364,10 @@ st.markdown("""
     </div>
     <div>
         <div class="header-text-title">ระบบพยากรณ์ผลการรักษาวัณโรค (TB)</div>
-        <div class="header-text-sub">วิเคราะห์โอกาสรักษาสำเร็จด้วยเทคโนโลยี AI · ใช้ประกอบการพิจารณาของแพทย์เท่านั้น</div>
+        <div class="header-text-sub">กรอกข้อมูลสุขภาพของคุณเพื่อประเมินแนวโน้มการรักษา · ผลนี้ใช้ประกอบการพิจารณาของแพทย์เท่านั้น</div>
     </div>
 </div>
-""", unsafe_allow_html=True)
-
-# ─── Mode switcher ─────────────────────────────────────────
-st.markdown('<div class="mode-bar"><span class="mode-label">โหมดการใช้งาน:</span></div>', unsafe_allow_html=True)
-_, mode_col, _ = st.columns([1, 3, 1])
-with mode_col:
-    mode = st.radio(
-        "โหมด",
-        ["👤  ผู้ป่วย / ประชาชนทั่วไป", "🏥  เจ้าหน้าที่สาธารณสุข"],
-        horizontal=True,
-        label_visibility="collapsed"
-    )
-is_staff = "เจ้าหน้าที่" in mode
-
-# ─── Info banner ───────────────────────────────────────────
-if is_staff:
-    banner_text = "โหมดเจ้าหน้าที่: แสดงฟิลด์ทางคลินิกทั้งหมด สามารถกรอกข้อมูลจากแฟ้มผู้ป่วยได้โดยตรง"
-else:
-    banner_text = "กรอกข้อมูลสุขภาพของคุณด้านล่าง ระบบจะประเมินแนวโน้มการรักษาวัณโรคเบื้องต้น · <b>ข้อมูลบางส่วนต้องให้แพทย์หรือพยาบาลช่วยกรอก</b>"
-
-st.markdown(f"""
-<div class="info-banner">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"
-         stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    <span>{banner_text}</span>
-</div>
-<div style="height:20px;background:var(--bg-base)"></div>
+<div class="top-spacer"></div>
 """, unsafe_allow_html=True)
 
 # ─── Form ──────────────────────────────────────────────────
@@ -430,13 +391,11 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
 
-        # Weight & Height → BMI
-        st.markdown("**น้ำหนักและส่วนสูง**")
         w_col, h_col = st.columns(2)
         with w_col:
-            weight = st.number_input("น้ำหนัก (กก.)", 20.0, 200.0, 55.0, step=0.5, key="weight")
+            weight = st.number_input("น้ำหนัก (กิโลกรัม)", 20.0, 200.0, 55.0, step=0.5, key="weight")
         with h_col:
-            height = st.number_input("ส่วนสูง (ซม.)", 100.0, 220.0, 165.0, step=0.5, key="height")
+            height = st.number_input("ส่วนสูง (เซนติเมตร)", 100.0, 220.0, 165.0, step=0.5, key="height")
 
         bmi = calc_bmi(weight, height)
         cat_text, cat_cls = bmi_category(bmi)
@@ -449,12 +408,7 @@ with st.form("main_form"):
             <span class="bmi-category {cat_cls}">{cat_text}</span>
         </div>""", unsafe_allow_html=True)
 
-        if is_staff:
-            dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 10000, 180, key="dur")
-            st.markdown('<p class="field-hint">กรอกจำนวนวันที่ผู้ป่วยได้รับการรักษาจนถึงปัจจุบัน</p>', unsafe_allow_html=True)
-        else:
-            dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 10000, 180, key="dur")
-            st.markdown('<p class="field-hint">แพทย์หรือพยาบาลจะช่วยกรอกข้อมูลส่วนนี้ให้</p>', unsafe_allow_html=True)
+        dur = st.number_input("รักษามาแล้วกี่เดือน (นับถึงวันนี้)", 0, 200, 6, key="dur")
 
     # ── Card 2: ประวัติสุขภาพ ──────────────────────────────
     with col2:
@@ -474,19 +428,15 @@ with st.form("main_form"):
             ["ไม่ติดเชื้อ (ผลลบ)", "ติดเชื้อ (ผลบวก)", "ไม่ทราบ / ไม่เคยตรวจ"],
             key="hiv"
         )
-        st.markdown('<p class="field-hint">HIV คือเชื้อไวรัสที่ทำให้ภูมิคุ้มกันร่างกายอ่อนแอลง ส่งผลต่อการรักษาวัณโรค</p>', unsafe_allow_html=True)
+        dm_r   = st.radio("โรคเบาหวาน",        ["ไม่เป็น", "เป็น"], horizontal=True, key="dm")
+        ckd_r  = st.radio("โรคไตเรื้อรัง",      ["ไม่เป็น", "เป็น"], horizontal=True, key="ckd")
+        copd_r = st.radio("โรคถุงลมโป่งพอง",    ["ไม่เป็น", "เป็น"], horizontal=True, key="copd")
+        liv_r  = st.radio("โรคตับ",             ["ไม่เป็น", "เป็น"], horizontal=True, key="liv")
 
-        dm = st.selectbox("โรคเบาหวาน", ["ไม่เป็น", "เป็น"], key="dm")
-        st.markdown('<p class="field-hint">ผู้ป่วยเบาหวานที่ควบคุมน้ำตาลไม่ได้ดีอาจตอบสนองต่อยาวัณโรคได้น้อยลง</p>', unsafe_allow_html=True)
-
-        ckd = st.selectbox("โรคไตเรื้อรัง", ["ไม่เป็น", "เป็น"], key="ckd")
-        st.markdown('<p class="field-hint">โรคไตอาจส่งผลต่อการขับยาออกจากร่างกาย แพทย์จะปรับขนาดยาให้เหมาะสม</p>', unsafe_allow_html=True)
-
-        copd = st.selectbox("โรคถุงลมโป่งพอง (COPD)", ["ไม่เป็น", "เป็น"], key="copd")
-        st.markdown('<p class="field-hint">โรคปอดอุดกั้นเรื้อรัง มักพบในผู้ที่สูบบุหรี่มานาน ทำให้หายใจลำบาก</p>', unsafe_allow_html=True)
-
-        liv = st.selectbox("โรคตับ", ["ไม่เป็น", "เป็น"], key="liv")
-        st.markdown('<p class="field-hint">ยาวัณโรคบางชนิดถูกกำจัดผ่านตับ ผู้ที่มีโรคตับต้องติดตามผลเลือดเป็นพิเศษ</p>', unsafe_allow_html=True)
+        dm   = dm_r   == "เป็น"
+        ckd  = ckd_r  == "เป็น"
+        copd = copd_r == "เป็น"
+        liv  = liv_r  == "เป็น"
 
     # ── Card 3: ผลการตรวจ ──────────────────────────────────
     with col3:
@@ -498,72 +448,77 @@ with st.form("main_form"):
                     <path d="M9 3h6m-6 0v6l-4 9a1 1 0 0 0 .9 1.45h12.2A1 1 0 0 0 19 18L15 9V3m-6 0h6"/>
                 </svg>
             </div>
-            <span class="card-title-text">ผลการตรวจ
-                <span class="staff-badge">ข้อมูลจากแพทย์</span>
-            </span>
+            <span class="card-title-text">ผลการตรวจ</span>
         </div>''', unsafe_allow_html=True)
 
-        pos_label = "ตำแหน่งที่ติดวัณโรค" if not is_staff else "ตำแหน่งการติดเชื้อ (position of TB)"
         pos = st.selectbox(
-            pos_label,
-            ["ในปอด (Pulmonary TB)", "นอกปอด (Extra-pulmonary TB)", "ทั้งในและนอกปอด"],
+            "ตำแหน่งที่ติดวัณโรค",
+            ["ในปอด (มีอาการไอ หรือเอกซเรย์ปอด)", "นอกปอด (ต่อมน้ำเหลือง กระดูก ฯลฯ)", "ทั้งในและนอกปอด"],
             key="pos"
         )
-        if not is_staff:
-            st.markdown('<p class="field-hint">วัณโรคสามารถเกิดในปอด (ไอเรื้อรัง) หรือนอกปอด เช่น ต่อมน้ำเหลือง กระดูก ไต เป็นต้น แพทย์จะแจ้งให้ทราบ</p>', unsafe_allow_html=True)
 
-        afb_label = "ผลตรวจเสมหะ เดือนที่ 1 (AFB)" if not is_staff else "AFB result of first month"
         afb = st.selectbox(
-            afb_label,
-            ["ไม่พบเชื้อ (Negative)", "พบเชื้อน้อยมาก (Scanty)", "พบเชื้อระดับ 1+ ", "พบเชื้อระดับ 2+", "พบเชื้อระดับ 3+"],
+            "ผลตรวจเสมหะ เดือนที่ 1 (แพทย์จะแจ้งผล)",
+            [
+                "ไม่ทราบ / ไม่มีผล",
+                "ไม่พบเชื้อ",
+                "พบเชื้อน้อยมาก (Scanty)",
+                "พบเชื้อน้อย (1+)",
+                "พบเชื้อปานกลาง (2+)",
+                "พบเชื้อมาก (3+)",
+            ],
             key="afb"
         )
-        if not is_staff:
-            st.markdown('<p class="field-hint">การตรวจเสมหะเพื่อดูปริมาณเชื้อวัณโรค ผลนี้แพทย์จะแจ้งหลังตรวจเดือนแรกของการรักษา</p>', unsafe_allow_html=True)
 
-        arv_label = "การรักษาด้วยยาต้านไวรัส HIV (ARV)" if not is_staff else "Treatment of ARV"
-        arv = st.selectbox(arv_label, ["ไม่ได้รับยา ARV", "ได้รับยา ARV"], key="arv")
-        if not is_staff:
-            st.markdown('<p class="field-hint">ยา ARV คือยาต้านไวรัส HIV สำหรับผู้ป่วยที่ติดเชื้อ HIV ร่วมด้วย</p>', unsafe_allow_html=True)
+        arv_r = st.radio(
+            "ได้รับยาต้านไวรัส HIV (ARV) หรือไม่",
+            ["ไม่ได้รับ", "ได้รับ"],
+            horizontal=True, key="arv"
+        )
+        arv = arv_r == "ได้รับ"
 
-        f_u_label = "จำนวนครั้งที่มาติดตามการรักษา" if not is_staff else "(TB F/U) Follow-up count"
-        f_u = st.number_input(f_u_label, 0, 50, 1, key="f_u")
-        if not is_staff:
-            st.markdown('<p class="field-hint">จำนวนครั้งที่มาพบแพทย์ตามนัดเพื่อติดตามผลการรักษา</p>', unsafe_allow_html=True)
+        f_u = st.number_input("จำนวนครั้งที่มาติดตามการรักษา (ครั้ง)", 0, 50, 1, key="f_u")
 
-    # ── Submit ──────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     _, btn_mid, _ = st.columns([3, 2, 3])
     with btn_mid:
-        sub = st.form_submit_button("วิเคราะห์ผลการรักษา", use_container_width=True)
+        sub = st.form_submit_button("ประเมินผลการรักษา", use_container_width=True)
 
 # ─── Result ────────────────────────────────────────────────
 if sub:
     if model is not None:
 
-        # Map display values → model encoding
-        hiv_map  = {"ไม่ติดเชื้อ (ผลลบ)": 0, "ติดเชื้อ (ผลบวก)": 1, "ไม่ทราบ / ไม่เคยตรวจ": 2}
-        pos_map  = {"ในปอด (Pulmonary TB)": 0, "นอกปอด (Extra-pulmonary TB)": 1, "ทั้งในและนอกปอด": 2}
-        afb_map  = {"ไม่พบเชื้อ (Negative)": 0, "พบเชื้อน้อยมาก (Scanty)": 4,
-                    "พบเชื้อระดับ 1+ ": 1, "พบเชื้อระดับ 2+": 2, "พบเชื้อระดับ 3+": 3}
-        bin_map  = {"ไม่เป็น": 0, "เป็น": 1}
-        arv_map  = {"ไม่ได้รับยา ARV": 0, "ได้รับยา ARV": 1}
-        gen_map  = {"ชาย": 0, "หญิง": 1}
+        hiv_map = {"ไม่ติดเชื้อ (ผลลบ)": 0, "ติดเชื้อ (ผลบวก)": 1, "ไม่ทราบ / ไม่เคยตรวจ": 2}
+        pos_map = {
+            "ในปอด (มีอาการไอ หรือเอกซเรย์ปอด)": 0,
+            "นอกปอด (ต่อมน้ำเหลือง กระดูก ฯลฯ)": 1,
+            "ทั้งในและนอกปอด": 2
+        }
+        # "ไม่ทราบ / ไม่มีผล" → fallback เป็น 0 (Negative = safe default)
+        afb_map = {
+            "ไม่ทราบ / ไม่มีผล": 0,
+            "ไม่พบเชื้อ": 0,
+            "พบเชื้อน้อยมาก (Scanty)": 4,
+            "พบเชื้อน้อย (1+)": 1,
+            "พบเชื้อปานกลาง (2+)": 2,
+            "พบเชื้อมาก (3+)": 3,
+        }
+        gen_map = {"ชาย": 0, "หญิง": 1}
 
         enc = {
-            'Age':                                      age,
-            'Gender':                                   gen_map.get(gen, 0),
-            'BMI':                                      bmi,
-            'Duration':                                 dur,
-            'HIV':                                      hiv_map.get(hiv, 0),
-            'Diabetes Mellitus':                        bin_map.get(dm, 0),
-            'Chronic Kidney Disease':                   bin_map.get(ckd, 0),
-            ' Chronic Obstructive Pulmonary Disease':   bin_map.get(copd, 0),
-            'Liver Disease':                            bin_map.get(liv, 0),
-            ' AFB resulf of first month':               afb_map.get(afb, 0),
-            'position of TB':                           pos_map.get(pos, 0),
-            '(TB F/U) follow up':                       f_u,
-            'Treatment of ARV':                         arv_map.get(arv, 0),
+            'Age':                                    age,
+            'Gender':                                 gen_map.get(gen, 0),
+            'BMI':                                    bmi,
+            'Duration':                               dur,
+            'HIV':                                    hiv_map.get(hiv, 0),
+            'Diabetes Mellitus':                      int(dm),
+            'Chronic Kidney Disease':                 int(ckd),
+            ' Chronic Obstructive Pulmonary Disease': int(copd),
+            'Liver Disease':                          int(liv),
+            ' AFB resulf of first month':             afb_map.get(afb, 0),
+            'position of TB':                         pos_map.get(pos, 0),
+            '(TB F/U) follow up':                     f_u,
+            'Treatment of ARV':                       int(arv),
         }
 
         df = pd.DataFrame(0, index=[0], columns=model_features)
@@ -574,42 +529,10 @@ if sub:
         prob     = model.predict_proba(df)[0][1]
         risk_pct = prob * 100
 
-        # Threshold based on model output interpretation
-        # prob = P(treatment failure | features)
-        if prob > 0.6:
-            risk_text = "สูง"
-            badge_cls = "risk-high"
-            wc, wt    = "warning-card", "warning-text"
-            wi        = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
-            wtitle    = "ควรแจ้งแพทย์ทันที: พบปัจจัยเสี่ยงต่อการรักษาไม่สำเร็จในระดับสูง"
-            wbody     = ("ระบบประเมินว่าผู้ป่วยรายนี้มีโอกาสสูงที่การรักษาจะไม่เป็นไปตามเป้าหมาย "
-                         "อาจเกิดจากปัจจัยหลายอย่างร่วมกัน เช่น ภาวะโภชนาการ โรคประจำตัว หรือการติดตามผลการรักษา "
-                         "ควรได้รับการดูแลอย่างใกล้ชิดจากทีมแพทย์และพิจารณาแผนการสนับสนุนเพิ่มเติม")
-            nb        = ("ผลลัพธ์นี้มาจากโมเดล AI ที่เรียนรู้จากข้อมูลผู้ป่วยในอดีต ใช้เป็นข้อมูลประกอบการตัดสินใจเท่านั้น "
-                         "ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกหรือคำแนะนำของแพทย์ได้")
-        elif prob > 0.3:
-            risk_text = "ปานกลาง"
-            badge_cls = "risk-medium"
-            wc, wt    = "warning-card-medium", "warning-text-medium"
-            wi        = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
-            wtitle    = "ควรติดตามอย่างสม่ำเสมอ: พบปัจจัยเสี่ยงบางประการ"
-            wbody     = ("พบปัจจัยบางอย่างที่อาจส่งผลต่อการรักษา ขอให้มาพบแพทย์ตามนัดทุกครั้ง รับประทานยาให้ครบถ้วนทุกวัน "
-                         "และแจ้งแพทย์ทันทีหากมีอาการผิดปกติ เช่น ไอมากขึ้น มีไข้ หรือน้ำหนักลดเร็วผิดปกติ")
-            nb        = ("ผลลัพธ์นี้มาจากโมเดล AI ใช้เป็นข้อมูลประกอบการพิจารณาของแพทย์ผู้ดูแลเท่านั้น "
-                         "ไม่ควรใช้ตัดสินใจปรับเปลี่ยนหรือหยุดการรักษาด้วยตนเอง")
-        else:
-            risk_text = "ต่ำ"
-            badge_cls = "risk-low"
-            wc, wt    = "warning-card-low", "warning-text-low"
-            wi        = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
-            wtitle    = "แนวโน้มดี: โอกาสรักษาสำเร็จอยู่ในระดับสูง"
-            wbody     = ("ข้อมูลที่กรอกบ่งชี้ว่าผู้ป่วยรายนี้มีแนวโน้มตอบสนองต่อการรักษาได้ดี "
-                         "สิ่งสำคัญที่สุดคือ รับประทานยาครบถ้วนทุกวัน ไม่หยุดยาเองแม้อาการจะดีขึ้น "
-                         "และมาพบแพทย์ตามนัดเสมอ")
-            nb        = ("แม้ผลประเมินจะอยู่ในเกณฑ์ดี ก็ยังไม่ควรหยุดยาหรือเปลี่ยนแผนการรักษาเอง "
-                         "ผลนี้เป็นเพียงการประเมินเบื้องต้นจาก AI ไม่ใช่การรับรองผลการรักษา")
+        OPTIMAL_THRESHOLD = 0.6499847769737244
+        is_high = prob >= OPTIMAL_THRESHOLD
 
-        # ── Result layout ───────────────────────────────────
+        # ── Result layout ────────────────────────────────────
         st.markdown('<div class="result-section-bg">', unsafe_allow_html=True)
         st.markdown("""
         <div class="result-header">
@@ -624,12 +547,31 @@ if sub:
             <span class="result-title">ผลการประเมิน</span>
         </div>""", unsafe_allow_html=True)
 
+        # ── Summary card ─────────────────────────────────────
+        if is_high:
+            wc   = "warning-card"
+            wt   = "warning-text"
+            wi   = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+            wtitle = "ผลการประเมิน: มีปัจจัยที่ควรติดตามอย่างใกล้ชิด"
+            wbody  = ("จากข้อมูลที่กรอก ระบบพบว่ามีปัจจัยบางอย่างที่อาจทำให้การรักษาไม่เป็นไปตามแผน "
+                      "ซึ่งอาจหมายถึงการดูแลรักษาที่ต้องปรับเปลี่ยน ไม่ได้หมายความว่าการรักษาจะล้มเหลวเสมอไป "
+                      "ขอแนะนำให้แจ้งแพทย์ผู้ดูแลเพื่อประเมินซ้ำโดยเร็ว")
+        else:
+            wc   = "warning-card-low"
+            wt   = "warning-text-low"
+            wi   = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+            wtitle = "ผลการประเมิน: แนวโน้มการรักษาอยู่ในเกณฑ์ดี"
+            wbody  = ("จากข้อมูลที่กรอก ระบบประเมินว่าการรักษาของคุณมีแนวโน้มที่ดี "
+                      "การรักษาวัณโรคต้องใช้เวลาและความสม่ำเสมอ ผลอาจเปลี่ยนแปลงได้ "
+                      "ขอให้รับประทานยาต่อเนื่องและมาพบแพทย์ตามนัดทุกครั้ง")
+
         st.markdown(f"""
         <div class="{wc}">
             <span class="warning-icon">{wi}</span>
             <div class="{wt}"><b>{wtitle}</b>{wbody}</div>
         </div>""", unsafe_allow_html=True)
 
+        # ── Gauge ────────────────────────────────────────────
         st.markdown('<div class="gauge-card">', unsafe_allow_html=True)
 
         fig = go.Figure(go.Indicator(
@@ -650,9 +592,8 @@ if sub:
                 'bar':  {'color': "rgba(0,0,0,0)", 'thickness': 0},
                 'bgcolor': "rgba(0,0,0,0)", 'borderwidth': 0,
                 'steps': [
-                    {'range': [0,   30],  'color': '#86EFAC'},
-                    {'range': [30,  60],  'color': '#FDE68A'},
-                    {'range': [60, 100], 'color': '#FCA5A5'}
+                    {'range': [0,  65], 'color': '#86EFAC'},
+                    {'range': [65, 100], 'color': '#FCA5A5'}
                 ],
                 'threshold': {
                     'line': {'color': "#1D4ED8", 'width': 5},
@@ -669,29 +610,78 @@ if sub:
             font={'family': 'Sarabun'}
         )
 
+        badge_cls  = "risk-high" if is_high else "risk-low"
+        risk_label = "มีปัจจัยเสี่ยง" if is_high else "แนวโน้มดี"
+
         col_g1, col_g2, col_g3 = st.columns([1, 2, 1])
         with col_g2:
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
             st.markdown(f"""
             <div style="text-align:center; margin-top:-14px; margin-bottom:4px;">
-                <span style="font-size:0.93rem; color:#64748B; font-weight:500;">โอกาสรักษาไม่สำเร็จ: </span>
-                <span class="risk-badge {badge_cls}">{risk_text}</span>
+                <span style="font-size:0.93rem; color:#64748B; font-weight:500;">ผลประเมิน: </span>
+                <span class="risk-badge {badge_cls}">{risk_label}</span>
             </div>
             <div style="text-align:center; margin-bottom:12px;">
                 <span style="font-size:0.78rem; color:#94A3B8;">
-                    * ตัวเลขนี้คือโอกาส (%) ที่การรักษาจะ<u>ไม่</u>สำเร็จตามเป้าหมาย ยิ่งน้อยยิ่งดี
+                    ค่านี้แสดงโอกาสที่การรักษาอาจไม่เป็นไปตามแผน ประเมิน ณ วันที่กรอกข้อมูล
                 </span>
             </div>
             <div class="legend-row">
-                <span><span class="legend-dot" style="background:#22C55E;"></span>ต่ำ (0–30%)</span>
-                <span><span class="legend-dot" style="background:#F59E0B;"></span>ปานกลาง (30–60%)</span>
-                <span><span class="legend-dot" style="background:#EF4444;"></span>สูง (60–100%)</span>
+                <span><span class="legend-dot" style="background:#22C55E;"></span>แนวโน้มดี (0–65%)</span>
+                <span><span class="legend-dot" style="background:#EF4444;"></span>มีปัจจัยเสี่ยง (65–100%)</span>
             </div>""", unsafe_allow_html=True)
 
         st.markdown('</div>', unsafe_allow_html=True)
 
+        # ── Action items ─────────────────────────────────────
+        if is_high:
+            action_html = """
+            <div class="action-box">
+                <div class="action-box-title">สิ่งที่ควรทำต่อ</div>
+                <div class="action-item">
+                    <div class="action-dot-red"></div>
+                    <span>แจ้งแพทย์หรือพยาบาลผู้ดูแลโดยเร็ว ไม่ต้องรอนัดถัดไป</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot-red"></div>
+                    <span>รับประทานยาให้ครบทุกวัน ห้ามหยุดยาเองเด็ดขาด เพราะอาจทำให้เชื้อดื้อยา</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot-red"></div>
+                    <span>แจ้งแพทย์ทันทีหากมีอาการเปลี่ยนแปลง เช่น ไอมากขึ้น มีไข้ น้ำหนักลดเร็ว หรือเหนื่อยผิดปกติ</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot-red"></div>
+                    <span>กลับมาประเมินอีกครั้งหลังพบแพทย์หรือเมื่อข้อมูลสุขภาพเปลี่ยนแปลง</span>
+                </div>
+            </div>"""
+        else:
+            action_html = """
+            <div class="action-box">
+                <div class="action-box-title">สิ่งที่ควรทำต่อ</div>
+                <div class="action-item">
+                    <div class="action-dot"></div>
+                    <span>รับประทานยาให้ครบทุกวันตามที่แพทย์สั่ง ไม่หยุดยาเองแม้อาการจะดีขึ้นแล้ว</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot"></div>
+                    <span>มาพบแพทย์ตามนัดทุกครั้ง และแจ้งอาการเปลี่ยนแปลงที่พบ</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot"></div>
+                    <span>ดูแลโภชนาการและพักผ่อนให้เพียงพอ ช่วยให้ร่างกายตอบสนองต่อยาได้ดีขึ้น</span>
+                </div>
+                <div class="action-item">
+                    <div class="action-dot"></div>
+                    <span>กลับมาประเมินอีกครั้งในเดือนถัดไปหรือเมื่อข้อมูลสุขภาพเปลี่ยนแปลง</span>
+                </div>
+            </div>"""
+
+        st.markdown(action_html, unsafe_allow_html=True)
+
+        # ── Disclaimer ───────────────────────────────────────
         st.markdown(f"""
-        <div class="note-card" style="margin-top:12px;">
+        <div class="note-card" style="margin-top:4px;">
             <span class="warning-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
@@ -700,7 +690,12 @@ if sub:
                     <line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
             </span>
-            <div class="note-text"><b>หมายเหตุสำคัญ</b>{nb}</div>
+            <div class="note-text">
+                <b>หมายเหตุสำคัญ</b>
+                ผลนี้ประเมินจากข้อมูล ณ วันที่กรอก สามารถกลับมาประเมินใหม่ได้ทุกครั้งที่ข้อมูลเปลี่ยนแปลง
+                ระบบนี้ใช้ AI วิเคราะห์เบื้องต้นเท่านั้น ไม่สามารถแทนการวินิจฉัยหรือคำแนะนำของแพทย์ได้
+                หากมีข้อสงสัย ควรปรึกษาบุคลากรทางการแพทย์โดยตรง
+            </div>
         </div>
         </div>""", unsafe_allow_html=True)
 
