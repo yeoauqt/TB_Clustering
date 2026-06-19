@@ -592,8 +592,8 @@ if sub:
                 'bar':  {'color': "rgba(0,0,0,0)", 'thickness': 0},
                 'bgcolor': "rgba(0,0,0,0)", 'borderwidth': 0,
                 'steps': [
-                    {'range': [0,  65], 'color': '#86EFAC'},
-                    {'range': [65, 100], 'color': '#FCA5A5'}
+                    {'range': [0,  50], 'color': '#86EFAC'},
+                    {'range': [50, 100], 'color': '#FCA5A5'}
                 ],
                 'threshold': {
                     'line': {'color': "#1D4ED8", 'width': 5},
@@ -627,8 +627,8 @@ if sub:
                 </span>
             </div>
             <div class="legend-row">
-                <span><span class="legend-dot" style="background:#22C55E;"></span>แนวโน้มดี (0–65%)</span>
-                <span><span class="legend-dot" style="background:#EF4444;"></span>มีปัจจัยเสี่ยง (65–100%)</span>
+                <span><span class="legend-dot" style="background:#22C55E;"></span>แนวโน้มดี (0–50%)</span>
+                <span><span class="legend-dot" style="background:#EF4444;"></span>มีปัจจัยเสี่ยง (50–100%)</span>
             </div>""", unsafe_allow_html=True)
 
         st.markdown('</div>', unsafe_allow_html=True)
