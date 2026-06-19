@@ -185,19 +185,23 @@ div[data-testid="stRadio"] [role="radiogroup"] {
     gap: 6px !important;
 }
 div[data-testid="stRadio"] [role="radiogroup"] label {
-    flex: 1 !important;
-    height: 44px !important;
+    flex: 1 1 0 !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center !important;
-    border-radius: 10px !important;
-    padding: 0 !important;
+
+    padding: 10px 12px !important;
     margin: 0 !important;
+
+    border-radius: 10px !important;
     background: transparent !important;
     border: none !important;
+
     font-size: 0.88rem !important;
     color: var(--text-mid) !important;
+
+    min-height: 44px !important;
 }
 div[data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {
     background: white !important;
