@@ -527,6 +527,8 @@ if sub:
                 df[k] = v
 
         prob     = model.predict_proba(df)[0][1]
+        st.write("Probability =", prob)
+        st.write(df)
         risk_pct = prob * 100
 
         OPTIMAL_THRESHOLD = 0.5
