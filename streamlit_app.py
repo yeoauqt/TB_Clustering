@@ -527,12 +527,21 @@ if sub:
                 df[k] = v
 
         prob     = model.predict_proba(df)[0][1]
-        st.write("Probability =", prob)
-        st.write(df)
         risk_pct = prob * 100
 
         OPTIMAL_THRESHOLD = 0.5
         is_high = prob > OPTIMAL_THRESHOLD
+
+        booster = model.get_booster()
+
+        importance = booster.get_score(importance_type='gain')
+
+        imp_df = pd.DataFrame(
+            importance.items(),
+            columns=['Feature', 'Importance']
+        ).sort_values('Importance', ascending=False)
+
+        st.dataframe(imp_df)
 
         # ── Result layout ────────────────────────────────────
         st.markdown('<div class="result-section-bg">', unsafe_allow_html=True)
