@@ -458,7 +458,7 @@ with st.form("main_form"):
             ["ไม่ติดเชื้อ (ผลลบ)", "ติดเชื้อ (ผลบวก)", "ไม่ทราบ / ไม่เคยตรวจ"],
             key="hiv"
         )
-        dm_r   = st.radio("โรคเบาหวาน",      ["ไม่เป็น", "เป็น"], horizontal=True, key="dm")
+        dm_r = st.segmented_control("โรคเบาหวาน", options=["ไม่เป็น", "เป็น"], default="ไม่เป็น")
         ckd_r  = st.radio("โรคไตเรื้อรัง",   ["ไม่เป็น", "เป็น"], horizontal=True, key="ckd")
         copd_r = st.radio("โรคถุงลมโป่งพอง", ["ไม่เป็น", "เป็น"], horizontal=True, key="copd")
         liv_r  = st.radio("โรคตับ",          ["ไม่เป็น", "เป็น"], horizontal=True, key="liv")
