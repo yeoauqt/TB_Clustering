@@ -154,6 +154,46 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
 
 
 
+/* ===== RADIO AS PILLS ===== */
+div[data-testid="stRadio"] > label {
+    font-size: 0.83rem !important;
+    color: var(--text-mid) !important;
+    font-weight: 500 !important;
+    margin-bottom: 4px !important;
+}
+div[data-testid="stRadio"] [data-testid="stWidgetLabel"] p {
+    font-size: 0.83rem !important;
+    color: var(--text-mid) !important;
+    font-weight: 500 !important;
+}
+div[data-testid="stRadio"] > div[role="radiogroup"] {
+    background: #F8FAFF !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: 10px !important;
+    padding: 3px !important;
+    display: inline-flex !important;
+    gap: 2px !important;
+    margin-top: 2px !important;
+}
+div[data-testid="stRadio"] > div[role="radiogroup"] > label {
+    border-radius: 8px !important;
+    padding: 5px 18px !important;
+    margin: 0 !important;
+    transition: background 0.15s !important;
+    font-weight: 500 !important;
+    font-size: 0.88rem !important;
+    color: var(--text-mid) !important;
+}
+div[data-testid="stRadio"] > div[role="radiogroup"] > label:has(input:checked) {
+    background: white !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10) !important;
+    color: var(--blue-main) !important;
+    font-weight: 700 !important;
+}
+div[data-testid="stRadio"] > div[role="radiogroup"] > label input[type="radio"] {
+    display: none !important;
+}
+
 /* ===== LABELS ===== */
 .stSelectbox > label, .stNumberInput > label {
     font-size: 0.83rem !important;
@@ -257,6 +297,18 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     margin-top: 14px; font-size: 0.83rem; color: var(--text-soft);
 }
 .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+/* ===== TOGGLE PILLS ===== */
+.toggle-group { display: flex; gap: 0; margin-top: 6px; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); width: fit-content; }
+.toggle-btn {
+    padding: 7px 22px; font-family: 'Sarabun', sans-serif; font-size: 0.88rem; font-weight: 500;
+    border: none; cursor: pointer; background: #F8FAFF; color: var(--text-mid);
+    transition: background 0.15s, color 0.15s;
+}
+.toggle-btn:first-child { border-right: 1.5px solid var(--border); }
+.toggle-btn.active-yes { background: #FEE2E2; color: #991B1B; font-weight: 700; }
+.toggle-btn.active-no  { background: #EFF6FF; color: var(--blue-main); font-weight: 700; }
+.toggle-label { font-size: 0.83rem; color: var(--text-mid); font-weight: 500; margin-bottom: 3px; }
 
 /* ===== DIVIDER ===== */
 .section-divider {
@@ -489,8 +541,8 @@ if sub:
             wc, wt    = "warning-card-low", "warning-text-low"
             wi        = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
             wtitle    = "ผลการประเมิน: กลุ่มเสี่ยงต่ำ"
-            wbody     = ("จากข้อมูลที่กรอก ระบบประเมินว่าผู้ป่วยรายนี้มีโอกาสเกิดผลการรักษาไม่สำเร็จต่ำกว่าเกณฑ์ที่กำหนด "
-                         "อย่างไรก็ตาม ควรปฏิบัติตามแผนการรักษาและคำแนะนำของแพทย์อย่างต่อเนื่อง")
+            wbody     = ("ผลการประเมินทางคลินิกพบว่าผู้ป่วยรายนี้มีความน่าจะเป็นของผลการรักษาไม่สำเร็จอยู่ในระดับต่ำกว่าเกณฑ์ที่กำหนด "
+                         "ทั้งนี้ ยังคงแนะนำให้ปฏิบัติตามแผนการรักษาและติดตามอาการกับบุคลากรทางการแพทย์อย่างสม่ำเสมอ")
             nb        = ("ค่านี้แสดงความน่าจะเป็นที่โมเดลประเมินว่าผลการรักษาอาจไม่สำเร็จ "
                          "โดยใช้ข้อมูลทางคลินิกของผู้ป่วยเป็นปัจจัยในการคำนวณ ผลลัพธ์นี้ใช้เป็นข้อมูลประกอบการพิจารณาของแพทย์เท่านั้น "
                          "ไม่สามารถใช้แทนการวินิจฉัยทางคลินิกหรือคำแนะนำของแพทย์ได้")
@@ -559,7 +611,7 @@ if sub:
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
             st.markdown(f"""
             <div style="text-align:center; margin-top:-14px; margin-bottom:4px;">
-                <span style="font-size:0.93rem; color:#64748B; font-weight:500;">โอกาสรักษาไม่สำเร็จ: </span>
+                <span style="font-size:0.93rem; color:#64748B; font-weight:500;">ระดับความเสี่ยง: </span>
                 <span class="risk-badge {badge_cls}">{risk_text}</span>
             </div>
             <div style="text-align:center; margin-bottom:12px;">
