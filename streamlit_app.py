@@ -384,11 +384,14 @@ with st.form("main_form"):
             ["ไม่ติดเชื้อ (ผลลบ)", "ติดเชื้อ (ผลบวก)", "ไม่ทราบ / ไม่เคยตรวจ"],
             key="hiv"
         )
-        st.markdown("**โรคประจำตัว**")
-        dm   = st.checkbox("โรคเบาหวาน",      key="dm")
-        ckd  = st.checkbox("โรคไตเรื้อรัง",   key="ckd")
-        copd = st.checkbox("โรคถุงลมโป่งพอง", key="copd")
-        liv  = st.checkbox("โรคตับ",          key="liv")
+        dm_r   = st.radio("โรคเบาหวาน",      ["ไม่เป็น", "เป็น"], horizontal=True, key="dm")
+        ckd_r  = st.radio("โรคไตเรื้อรัง",   ["ไม่เป็น", "เป็น"], horizontal=True, key="ckd")
+        copd_r = st.radio("โรคถุงลมโป่งพอง", ["ไม่เป็น", "เป็น"], horizontal=True, key="copd")
+        liv_r  = st.radio("โรคตับ",          ["ไม่เป็น", "เป็น"], horizontal=True, key="liv")
+        dm   = dm_r   == "เป็น"
+        ckd  = ckd_r  == "เป็น"
+        copd = copd_r == "เป็น"
+        liv  = liv_r  == "เป็น"
 
     # ── Card 3: ผลการตรวจ ──────────────────────────────────
     with col3:
@@ -421,7 +424,8 @@ with st.form("main_form"):
             key="afb"
         )
 
-        arv = st.checkbox("ได้รับยาต้านไวรัส HIV (ARV)", key="arv")
+        arv_r = st.radio("ได้รับยาต้านไวรัส HIV (ARV) หรือไม่", ["ไม่ได้รับ", "ได้รับ"], horizontal=True, key="arv")
+        arv = arv_r == "ได้รับ"
         f_u = st.number_input("จำนวนครั้งที่มาติดตามการรักษา", 0, 50, 1, key="f_u")
 
     # ── Submit ──────────────────────────────────────────────
