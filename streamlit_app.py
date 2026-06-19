@@ -498,10 +498,10 @@ if sub:
         afb_map = {
             "ไม่ทราบ / ไม่มีผล": 0,
             "ไม่พบเชื้อ": 0,
-            "พบเชื้อน้อยมาก (Scanty)": 4,
-            "พบเชื้อน้อย (1+)": 1,
-            "พบเชื้อปานกลาง (2+)": 2,
-            "พบเชื้อมาก (3+)": 3,
+            "พบเชื้อน้อยมาก (Scanty)": 1,
+            "พบเชื้อน้อย (1+)": 2,
+            "พบเชื้อปานกลาง (2+)": 3,
+            "พบเชื้อมาก (3+)": 4,
         }
         gen_map = {"ชาย": 0, "หญิง": 1}
 
@@ -530,7 +530,7 @@ if sub:
         risk_pct = prob * 100
 
         OPTIMAL_THRESHOLD = 0.6499847769737244
-        is_high = prob >= OPTIMAL_THRESHOLD
+        is_high = prob > 0.3
 
         # ── Result layout ────────────────────────────────────
         st.markdown('<div class="result-section-bg">', unsafe_allow_html=True)
