@@ -408,7 +408,7 @@ with st.form("main_form"):
             <span class="bmi-category {cat_cls}">{cat_text}</span>
         </div>""", unsafe_allow_html=True)
 
-        dur = st.number_input("รักษามาแล้วกี่เดือน (นับถึงวันนี้)", 0, 200, 6, key="dur")
+        dur = st.number_input("ระยะเวลาที่เข้ารับการรักษามาแล้ว (เดือน)", 0, 200, 6, key="dur")
 
     # ── Card 2: ประวัติสุขภาพ ──────────────────────────────
     with col2:
