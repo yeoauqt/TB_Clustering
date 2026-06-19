@@ -179,19 +179,23 @@ div[data-testid="stRadio"] [role="radiogroup"] {
     gap: 2px !important;
     margin-top: 2px !important;
 }
+div[data-testid="stRadio"] [role="radiogroup"] {
+    display: flex !important;
+    width: 100% !important;
+    gap: 6px !important;
+}
 div[data-testid="stRadio"] [role="radiogroup"] label {
-    flex: 1 1 0 !important;
+    flex: 1 !important;
+    height: 44px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 8px !important;
-    padding: 7px 18px !important;
+    text-align: center !important;
+    border-radius: 10px !important;
+    padding: 0 !important;
     margin: 0 !important;
-    transition: background 0.15s !important;
-    font-weight: 500 !important;
+    background: transparent !important;
+    border: none !important;
     font-size: 0.88rem !important;
     color: var(--text-mid) !important;
 }
