@@ -371,8 +371,8 @@ if sub:
                 'bar':  {'color': "rgba(0,0,0,0)", 'thickness': 0},
                 'bgcolor': "rgba(0,0,0,0)", 'borderwidth': 0,
                 'steps': [
-                    {'range': [0, 65],  'color': '#86EFAC'},[cite: 1],
-                    {'range': [65, 100], 'color': '#FCA5A5'}[cite: 1]
+                    {'range': [0, 65],  'color': '#86EFAC'},
+                    {'range': [65, 100], 'color': '#FCA5A5'}
                 ],
                 'threshold': {'line': {'color': "#1D4ED8", 'width': 5}, 'thickness': 0.85, 'value': risk_pct}
             }
