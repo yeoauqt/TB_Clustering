@@ -530,7 +530,7 @@ if sub:
         risk_pct = prob * 100
 
         OPTIMAL_THRESHOLD = 0.6499847769737244
-        is_high = prob > 0.3
+        is_high = prob > OPTIMAL_THRESHOLD
 
         # ── Result layout ────────────────────────────────────
         st.markdown('<div class="result-section-bg">', unsafe_allow_html=True)
