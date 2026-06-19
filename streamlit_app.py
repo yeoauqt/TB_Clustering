@@ -155,6 +155,39 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
 
 
 /* ===== RADIO AS PILLS ===== */
+
+/* ===== บังคับให้ widget container เต็มความกว้าง column ===== */
+div[data-testid="stElementContainer"] {
+    width: 100% !important;
+}
+
+/* ===== SEGMENTED CONTROL ให้ยาวเท่า selectbox ===== */
+div[data-testid="stSegmentedControl"] {
+    width: 100% !important;
+}
+div[data-testid="stSegmentedControl"] > div {
+    width: 100% !important;
+}
+div[data-testid="stSegmentedControl"] [data-baseweb="button-group"] {
+    width: 100% !important;
+    display: flex !important;
+}
+div[data-testid="stSegmentedControl"] [data-baseweb="button-group"] button {
+    flex: 1 1 0 !important;
+}
+div[data-testid="stSegmentedControl"] button[kind] {
+    border-radius: 10px !important;
+    font-family: 'Sarabun', sans-serif !important;
+    min-height: 44px !important;
+}
+
+/* ===== กันข้อความ "ไม่เป็น" ตกบรรทัด ใน radio pill ===== */
+div[data-testid="stRadio"] [role="radiogroup"] label {
+    white-space: nowrap !important;
+}
+
+
+
 div[data-testid="stRadio"] > label {
     font-size: 0.83rem !important;
     color: var(--text-mid) !important;
