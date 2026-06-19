@@ -453,12 +453,11 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
 
-        st.markdown("**น้ำหนักและส่วนสูง**")
         w_col, h_col = st.columns(2)
         with w_col:
-            weight = st.number_input("น้ำหนัก (กก.)", 20.0, 200.0, 55.0, step=0.5, key="weight")
+            weight = st.number_input("น้ำหนัก (กิโลกรัม)", 20.0, 200.0, 55.0, step=0.5, key="weight")
         with h_col:
-            height = st.number_input("ส่วนสูง (ซม.)", 100.0, 220.0, 165.0, step=0.5, key="height")
+            height = st.number_input("ส่วนสูง (เซนติเมตร)", 100.0, 220.0, 165.0, step=0.5, key="height")
 
         bmi = calc_bmi(weight, height)
         cat_text, cat_cls = bmi_category(bmi)
@@ -471,7 +470,7 @@ with st.form("main_form"):
             <span class="bmi-category {cat_cls}">{cat_text}</span>
         </div>""", unsafe_allow_html=True)
 
-        dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 120, 6, key="dur")
+        dur = st.number_input("ระยะเวลาที่เข้ารับการรักษามาแล้ว (เดือน)", 0, 200, 6, key="dur")
 
     # ── Card 2: ประวัติสุขภาพ ──────────────────────────────
     with col2:
