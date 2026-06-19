@@ -529,7 +529,7 @@ if sub:
         prob     = model.predict_proba(df)[0][1]
         risk_pct = prob * 100
 
-        OPTIMAL_THRESHOLD = 0.6499847769737244
+        OPTIMAL_THRESHOLD = 0.5
         is_high = prob > OPTIMAL_THRESHOLD
 
         # ── Result layout ────────────────────────────────────
