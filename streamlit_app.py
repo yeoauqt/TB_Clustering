@@ -166,31 +166,45 @@ div[data-testid="stRadio"] [data-testid="stWidgetLabel"] p {
     color: var(--text-mid) !important;
     font-weight: 500 !important;
 }
-div[data-testid="stRadio"] > div[role="radiogroup"] {
+div[data-testid="stRadio"] {
+    width: 100% !important;
+}
+div[data-testid="stRadio"] [role="radiogroup"] {
     background: #F8FAFF !important;
     border: 1.5px solid var(--border) !important;
     border-radius: 10px !important;
     padding: 3px !important;
-    display: inline-flex !important;
+    display: flex !important;
+    width: 100% !important;
     gap: 2px !important;
     margin-top: 2px !important;
 }
-div[data-testid="stRadio"] > div[role="radiogroup"] > label {
+div[data-testid="stRadio"] [role="radiogroup"] label {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
     border-radius: 8px !important;
-    padding: 5px 18px !important;
+    padding: 7px 18px !important;
     margin: 0 !important;
     transition: background 0.15s !important;
     font-weight: 500 !important;
     font-size: 0.88rem !important;
     color: var(--text-mid) !important;
 }
-div[data-testid="stRadio"] > div[role="radiogroup"] > label:has(input:checked) {
+div[data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {
     background: white !important;
     box-shadow: 0 1px 4px rgba(0,0,0,0.10) !important;
     color: var(--blue-main) !important;
     font-weight: 700 !important;
 }
-div[data-testid="stRadio"] > div[role="radiogroup"] > label input[type="radio"] {
+div[data-testid="stRadio"] [role="radiogroup"] label input[type="radio"] {
+    display: none !important;
+}
+div[data-testid="stRadio"] [role="radiogroup"] label > div:first-child {
     display: none !important;
 }
 
