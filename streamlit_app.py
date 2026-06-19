@@ -70,36 +70,7 @@ section.main > div {
 }
 .top-spacer { height: 28px; background: var(--bg-base); }
 
-/* ===== MODE SWITCHER ===== */
-.mode-bar {
-    background: #FFFFFF;
-    border-bottom: 1.5px solid var(--border);
-    padding: 12px 64px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.mode-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-mid);
-    margin-right: 4px;
-}
 
-/* ===== INFO BANNER ===== */
-.info-banner {
-    margin: 0 64px 0px;
-    background: var(--blue-light);
-    border: 1.5px solid #BFDBFE;
-    border-radius: 14px;
-    padding: 14px 20px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 0.87rem;
-    color: #1E3A5F;
-    line-height: 1.7;
-}
 
 /* ===== FORM ===== */
 div[data-testid="stForm"] {
@@ -145,15 +116,7 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
     font-size: 1.02rem; font-weight: 700; color: var(--blue-main);
 }
 
-/* ===== FIELD HINT ===== */
-.field-hint {
-    font-size: 0.78rem;
-    color: var(--text-soft);
-    margin-top: -8px;
-    margin-bottom: 8px;
-    line-height: 1.5;
-    padding-left: 2px;
-}
+
 
 /* ===== BMI DISPLAY ===== */
 .bmi-display {
@@ -189,20 +152,7 @@ div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid
 .bmi-over    { background: #FEF9C3; color: #854D0E; }
 .bmi-obese   { background: #FEE2E2; color: #991B1B; }
 
-/* ===== STAFF-ONLY BADGE ===== */
-.staff-badge {
-    display: inline-block;
-    background: #F1F5F9;
-    color: #64748B;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 1px 7px;
-    margin-left: 6px;
-    vertical-align: middle;
-    letter-spacing: 0.3px;
-}
+
 
 /* ===== LABELS ===== */
 .stSelectbox > label, .stNumberInput > label {
@@ -320,16 +270,12 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 
 @media (max-width: 1024px) {
     .page-header { padding: 20px 32px !important; }
-    .mode-bar { padding: 12px 32px !important; }
-    .info-banner { margin: 0 32px 0px !important; }
     div[data-testid="stForm"] { padding: 0 32px 24px !important; }
     .result-section-bg { padding: 8px 32px 40px !important; }
 }
 @media (max-width: 768px) {
     .page-header { padding: 16px 16px !important; gap: 12px !important; }
     .header-text-title { font-size: 1.05rem !important; }
-    .mode-bar { padding: 10px 16px !important; }
-    .info-banner { margin: 0 12px 0px !important; }
     div[data-testid="stForm"] { padding: 0 12px 20px !important; }
     div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] { flex-direction: column !important; gap: 14px !important; }
     div[data-testid="stForm"] div[data-testid="stHorizontalBlock"] > div[data-testid="stVerticalBlock"] {
@@ -379,36 +325,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ─── Mode switcher ─────────────────────────────────────────
-st.markdown('<div class="mode-bar"><span class="mode-label">โหมดการใช้งาน:</span></div>', unsafe_allow_html=True)
-_, mode_col, _ = st.columns([1, 3, 1])
-with mode_col:
-    mode = st.radio(
-        "โหมด",
-        ["👤  ผู้ป่วย / ประชาชนทั่วไป", "🏥  เจ้าหน้าที่สาธารณสุข"],
-        horizontal=True,
-        label_visibility="collapsed"
-    )
-is_staff = "เจ้าหน้าที่" in mode
-
-# ─── Info banner ───────────────────────────────────────────
-if is_staff:
-    banner_text = "โหมดเจ้าหน้าที่: แสดงฟิลด์ทางคลินิกทั้งหมด สามารถกรอกข้อมูลจากแฟ้มผู้ป่วยได้โดยตรง"
-else:
-    banner_text = "กรอกข้อมูลสุขภาพของคุณด้านล่าง ระบบจะประเมินแนวโน้มการรักษาวัณโรคเบื้องต้น · <b>ข้อมูลบางส่วนต้องให้แพทย์หรือพยาบาลช่วยกรอก</b>"
-
-st.markdown(f"""
-<div class="info-banner">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"
-         stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    <span>{banner_text}</span>
-</div>
-<div style="height:20px;background:var(--bg-base)"></div>
-""", unsafe_allow_html=True)
-
 # ─── Form ──────────────────────────────────────────────────
 with st.form("main_form"):
     col1, col2, col3 = st.columns(3, gap="large")
@@ -430,7 +346,6 @@ with st.form("main_form"):
         age = st.number_input("อายุ (ปี)", 0, 120, 45, key="age")
         gen = st.selectbox("เพศ", ["ชาย", "หญิง"], key="gen")
 
-        # Weight & Height → BMI
         st.markdown("**น้ำหนักและส่วนสูง**")
         w_col, h_col = st.columns(2)
         with w_col:
@@ -449,12 +364,7 @@ with st.form("main_form"):
             <span class="bmi-category {cat_cls}">{cat_text}</span>
         </div>""", unsafe_allow_html=True)
 
-        if is_staff:
-            dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 10000, 180, key="dur")
-            st.markdown('<p class="field-hint">กรอกจำนวนวันที่ผู้ป่วยได้รับการรักษาจนถึงปัจจุบัน</p>', unsafe_allow_html=True)
-        else:
-            dur = st.number_input("ระยะเวลาการรักษา (วัน)", 0, 10000, 180, key="dur")
-            st.markdown('<p class="field-hint">แพทย์หรือพยาบาลจะช่วยกรอกข้อมูลส่วนนี้ให้</p>', unsafe_allow_html=True)
+        dur = st.number_input("ระยะเวลาการรักษา (เดือน)", 0, 120, 6, key="dur")
 
     # ── Card 2: ประวัติสุขภาพ ──────────────────────────────
     with col2:
@@ -474,19 +384,10 @@ with st.form("main_form"):
             ["ไม่ติดเชื้อ (ผลลบ)", "ติดเชื้อ (ผลบวก)", "ไม่ทราบ / ไม่เคยตรวจ"],
             key="hiv"
         )
-        st.markdown('<p class="field-hint">HIV คือเชื้อไวรัสที่ทำให้ภูมิคุ้มกันร่างกายอ่อนแอลง ส่งผลต่อการรักษาวัณโรค</p>', unsafe_allow_html=True)
-
-        dm = st.selectbox("โรคเบาหวาน", ["ไม่เป็น", "เป็น"], key="dm")
-        st.markdown('<p class="field-hint">ผู้ป่วยเบาหวานที่ควบคุมน้ำตาลไม่ได้ดีอาจตอบสนองต่อยาวัณโรคได้น้อยลง</p>', unsafe_allow_html=True)
-
-        ckd = st.selectbox("โรคไตเรื้อรัง", ["ไม่เป็น", "เป็น"], key="ckd")
-        st.markdown('<p class="field-hint">โรคไตอาจส่งผลต่อการขับยาออกจากร่างกาย แพทย์จะปรับขนาดยาให้เหมาะสม</p>', unsafe_allow_html=True)
-
-        copd = st.selectbox("โรคถุงลมโป่งพอง (COPD)", ["ไม่เป็น", "เป็น"], key="copd")
-        st.markdown('<p class="field-hint">โรคปอดอุดกั้นเรื้อรัง มักพบในผู้ที่สูบบุหรี่มานาน ทำให้หายใจลำบาก</p>', unsafe_allow_html=True)
-
-        liv = st.selectbox("โรคตับ", ["ไม่เป็น", "เป็น"], key="liv")
-        st.markdown('<p class="field-hint">ยาวัณโรคบางชนิดถูกกำจัดผ่านตับ ผู้ที่มีโรคตับต้องติดตามผลเลือดเป็นพิเศษ</p>', unsafe_allow_html=True)
+        dm   = st.selectbox("โรคเบาหวาน",          ["ไม่เป็น", "เป็น"], key="dm")
+        ckd  = st.selectbox("โรคไตเรื้อรัง",        ["ไม่เป็น", "เป็น"], key="ckd")
+        copd = st.selectbox("โรคถุงลมโป่งพอง",      ["ไม่เป็น", "เป็น"], key="copd")
+        liv  = st.selectbox("โรคตับ",               ["ไม่เป็น", "เป็น"], key="liv")
 
     # ── Card 3: ผลการตรวจ ──────────────────────────────────
     with col3:
@@ -498,38 +399,33 @@ with st.form("main_form"):
                     <path d="M9 3h6m-6 0v6l-4 9a1 1 0 0 0 .9 1.45h12.2A1 1 0 0 0 19 18L15 9V3m-6 0h6"/>
                 </svg>
             </div>
-            <span class="card-title-text">ผลการตรวจ
-                <span class="staff-badge">ข้อมูลจากแพทย์</span>
-            </span>
+            <span class="card-title-text">ผลการตรวจ</span>
         </div>''', unsafe_allow_html=True)
 
-        pos_label = "ตำแหน่งที่ติดวัณโรค" if not is_staff else "ตำแหน่งการติดเชื้อ (position of TB)"
         pos = st.selectbox(
-            pos_label,
-            ["ในปอด (Pulmonary TB)", "นอกปอด (Extra-pulmonary TB)", "ทั้งในและนอกปอด"],
+            "ตำแหน่งที่ติดวัณโรค",
+            ["ในปอด", "นอกปอด", "ทั้งในและนอกปอด"],
             key="pos"
         )
-        if not is_staff:
-            st.markdown('<p class="field-hint">วัณโรคสามารถเกิดในปอด (ไอเรื้อรัง) หรือนอกปอด เช่น ต่อมน้ำเหลือง กระดูก ไต เป็นต้น แพทย์จะแจ้งให้ทราบ</p>', unsafe_allow_html=True)
 
-        afb_label = "ผลตรวจเสมหะ เดือนที่ 1 (AFB)" if not is_staff else "AFB result of first month"
         afb = st.selectbox(
-            afb_label,
-            ["ไม่พบเชื้อ (Negative)", "พบเชื้อน้อยมาก (Scanty)", "พบเชื้อระดับ 1+ ", "พบเชื้อระดับ 2+", "พบเชื้อระดับ 3+"],
+            "ผลตรวจเสมหะ เดือนที่ 1",
+            [
+                "ไม่พบเชื้อ",
+                "พบเชื้อน้อยมาก (แพทย์รายงานว่า Scanty)",
+                "พบเชื้อ 1+ (น้อย)",
+                "พบเชื้อ 2+ (ปานกลาง)",
+                "พบเชื้อ 3+ (มาก)",
+            ],
             key="afb"
         )
-        if not is_staff:
-            st.markdown('<p class="field-hint">การตรวจเสมหะเพื่อดูปริมาณเชื้อวัณโรค ผลนี้แพทย์จะแจ้งหลังตรวจเดือนแรกของการรักษา</p>', unsafe_allow_html=True)
 
-        arv_label = "การรักษาด้วยยาต้านไวรัส HIV (ARV)" if not is_staff else "Treatment of ARV"
-        arv = st.selectbox(arv_label, ["ไม่ได้รับยา ARV", "ได้รับยา ARV"], key="arv")
-        if not is_staff:
-            st.markdown('<p class="field-hint">ยา ARV คือยาต้านไวรัส HIV สำหรับผู้ป่วยที่ติดเชื้อ HIV ร่วมด้วย</p>', unsafe_allow_html=True)
-
-        f_u_label = "จำนวนครั้งที่มาติดตามการรักษา" if not is_staff else "(TB F/U) Follow-up count"
-        f_u = st.number_input(f_u_label, 0, 50, 1, key="f_u")
-        if not is_staff:
-            st.markdown('<p class="field-hint">จำนวนครั้งที่มาพบแพทย์ตามนัดเพื่อติดตามผลการรักษา</p>', unsafe_allow_html=True)
+        arv = st.selectbox(
+            "ได้รับยาต้านไวรัส HIV (ARV) หรือไม่",
+            ["ไม่ได้รับ", "ได้รับ"],
+            key="arv"
+        )
+        f_u = st.number_input("จำนวนครั้งที่มาติดตามการรักษา", 0, 50, 1, key="f_u")
 
     # ── Submit ──────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
